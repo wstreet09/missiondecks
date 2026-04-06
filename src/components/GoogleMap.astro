@@ -1,0 +1,30 @@
+---
+import { site } from '../data/site';
+
+interface Props {
+  areaName: string;
+  embedUrl?: string;
+}
+
+const { areaName, embedUrl = site.googleMapsEmbed } = Astro.props;
+---
+
+<section class="bg-stone py-12 lg:py-16">
+  <div class="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
+    <h2 class="font-serif text-forest text-2xl lg:text-3xl mb-6">
+      Serving {areaName} and Surrounding Neighborhoods
+    </h2>
+    <div class="rounded-[8px] overflow-hidden shadow-sm">
+      <iframe
+        src={embedUrl}
+        width="100%"
+        height="400"
+        style="border:0;"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title={`Mission Decks & Design service area map for ${areaName}`}
+      ></iframe>
+    </div>
+  </div>
+</section>

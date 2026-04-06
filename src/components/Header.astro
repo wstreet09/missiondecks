@@ -1,0 +1,140 @@
+---
+import { site } from '../data/site';
+
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { label: 'Services', href: '/services/' },
+  { label: 'Service Areas', href: '/service-areas/' },
+  { label: 'About', href: '/about/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: 'Contact', href: '/contact/' },
+];
+
+function isActive(href: string): boolean {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+}
+---
+
+<header id="site-header" class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border/50 transition-all duration-300">
+  <div id="header-inner" class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 flex items-center justify-between transition-all duration-300" style="height: 100px;">
+    <!-- Logo -->
+    <a href="/" class="flex items-center no-underline shrink-0">
+      <img
+        id="header-logo"
+        src="/images/Mission-Decks-Logo-main.png"
+        alt="Mission Decks & Design"
+        class="transition-all duration-300"
+        style="height: 76px; width: auto; max-width: 460px;"
+      />
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden lg:flex items-center gap-7" aria-label="Main navigation">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class:list={[
+            'text-[0.8125rem] font-medium tracking-[0.04em] uppercase no-underline transition-colors duration-200',
+            isActive(link.href) ? 'text-gold' : 'text-bark hover:text-gold',
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Desktop CTA + Phone -->
+    <div class="hidden lg:flex items-center gap-5">
+      <a href={`tel:${site.phoneRaw}`} class="text-xs font-medium text-bark-light no-underline hover:text-forest tracking-wide">
+        {site.phone}
+      </a>
+      <a
+        href="/contact/"
+        style="background-color: #2C4A3E; color: #ffffff; padding: 9px 22px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 4px; text-decoration: none; display: inline-flex; align-items: center; transition: background-color 0.3s;"
+        onmouseover="this.style.backgroundColor='#1B3329'"
+        onmouseout="this.style.backgroundColor='#2C4A3E'"
+      >
+        Request a Quote
+      </a>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button
+      id="mobile-menu-btn"
+      class="lg:hidden flex items-center justify-center w-10 h-10 text-bark"
+      aria-label="Open menu"
+      aria-expanded="false"
+    >
+      <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="hidden fixed inset-0 top-[100px] bg-forest-dark z-40 lg:hidden">
+    <nav class="flex flex-col items-center justify-center h-full gap-6 p-8" aria-label="Mobile navigation">
+      <a href="/" style="color: #F5F1EB; font-size: 1.125rem; font-weight: 500; text-decoration: none;">Home</a>
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          style={`color: ${isActive(link.href) ? '#E2C284' : '#F5F1EB'}; font-size: 1.125rem; font-weight: 500; text-decoration: none;`}
+        >
+          {link.label}
+        </a>
+      ))}
+      <a href={`tel:${site.phoneRaw}`} style="color: #F5F1EB; font-size: 1.125rem; font-weight: 500; text-decoration: none; margin-top: 16px;">
+        {site.phone}
+      </a>
+      <a
+        href="/contact/"
+        style="margin-top: 8px; display: inline-flex; align-items: center; padding: 12px 32px; background: #ffffff; color: #1B3329; font-size: 0.875rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 4px; text-decoration: none;"
+      >
+        Request a Quote
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+  const header = document.getElementById('site-header');
+  const headerInner = document.getElementById('header-inner');
+  const headerLogo = document.getElementById('header-logo');
+
+  btn?.addEventListener('click', () => {
+    const isOpen = menu?.classList.contains('hidden');
+    menu?.classList.toggle('hidden');
+    menuIcon?.classList.toggle('hidden');
+    closeIcon?.classList.toggle('hidden');
+    btn?.setAttribute('aria-expanded', String(isOpen));
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  // Shrink header on scroll
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 10) {
+      header?.classList.add('shadow-nav');
+      if (headerInner) headerInner.style.height = '60px';
+      if (headerLogo) {
+        headerLogo.style.height = '40px';
+        headerLogo.style.maxWidth = '240px';
+      }
+    } else {
+      header?.classList.remove('shadow-nav');
+      if (headerInner) headerInner.style.height = '100px';
+      if (headerLogo) {
+        headerLogo.style.height = '76px';
+        headerLogo.style.maxWidth = '460px';
+      }
+    }
+  });
+</script>

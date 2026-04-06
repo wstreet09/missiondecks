@@ -1,0 +1,32 @@
+---
+interface Props {
+  name: string;
+  description: string;
+  href: string;
+  image: string;
+  overline?: string;
+}
+
+const { name, description, href, image, overline } = Astro.props;
+---
+
+<a href={href} class="group block bg-white rounded-[8px] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-400 no-underline overflow-hidden">
+  <div class="overflow-hidden">
+    <img
+      src={image}
+      alt={`${name} by Mission Decks & Design`}
+      class="w-full aspect-[3/2] object-cover group-hover:scale-[1.04] transition-transform duration-500"
+      width="640"
+      height="427"
+      loading="lazy"
+    />
+  </div>
+  <div class="px-7 py-6">
+    {overline && <span class="overline">{overline}</span>}
+    <h3 class="font-serif text-forest text-xl lg:text-2xl mb-3">{name}</h3>
+    <p class="text-bark-light text-[0.9375rem] leading-relaxed line-clamp-2 mb-4">{description}</p>
+    <span class="inline-flex items-center text-gold font-semibold text-sm tracking-wide group-hover:gap-2.5 gap-1.5 transition-all duration-300 uppercase">
+      Explore <span class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+    </span>
+  </div>
+</a>

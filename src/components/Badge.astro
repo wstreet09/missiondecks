@@ -1,0 +1,20 @@
+---
+interface Props {
+  text: string;
+  variant?: 'gold' | 'forest';
+}
+
+const { text, variant = 'gold' } = Astro.props;
+
+const styles = {
+  gold: 'border-gold/40 text-gold bg-gold/5',
+  forest: 'border-forest/30 text-forest bg-forest/5',
+};
+---
+
+<span class:list={[
+  'inline-flex items-center px-3 py-1 rounded-full border text-[0.625rem] font-semibold tracking-[0.15em] uppercase',
+  styles[variant],
+]}>
+  {text}
+</span>

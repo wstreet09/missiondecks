@@ -1,0 +1,33 @@
+---
+interface Props {
+  quote: string;
+  name: string;
+  location: string;
+  rating?: number;
+}
+
+const { quote, name, location, rating = 5 } = Astro.props;
+---
+
+<blockquote class="relative bg-white rounded-[8px] p-8 lg:p-10 shadow-sm">
+  <!-- Gold quote mark -->
+  <span class="absolute top-4 left-6 font-serif text-[4rem] leading-none gold-text opacity-40 select-none" aria-hidden="true">&ldquo;</span>
+
+  <p class="font-serif text-bark text-lg lg:text-xl italic leading-relaxed mb-6 pt-8">
+    {quote}
+  </p>
+
+  <div class="gold-line mb-4"></div>
+
+  <footer class="flex flex-col gap-1">
+    <cite class="not-italic font-sans font-semibold text-forest text-[0.9375rem] tracking-wide">
+      {name}
+    </cite>
+    <span class="text-bark-light text-sm">{location}</span>
+    <div class="flex gap-0.5 mt-1.5">
+      {Array.from({ length: rating }).map(() => (
+        <span class="text-gold text-base">&#9733;</span>
+      ))}
+    </div>
+  </footer>
+</blockquote>

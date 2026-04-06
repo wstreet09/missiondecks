@@ -1,0 +1,48 @@
+---
+import { site } from '../data/site';
+
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+
+const allItems = [{ label: 'Home', href: '/' }, ...items];
+
+const schemaItems = allItems.map((item, index) => ({
+  '@type': 'ListItem',
+  position: index + 1,
+  name: item.label,
+  ...(item.href ? { item: `${site.url}${item.href}` } : {}),
+}));
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: schemaItems,
+};
+---
+
+<nav aria-label="Breadcrumb" class="py-3">
+  <ol class="flex items-center gap-1.5 text-sm text-bark-light flex-wrap">
+    {allItems.map((crumb, i) => (
+      <li class="flex items-center gap-1.5">
+        {i > 0 && <span class="text-border">/</span>}
+        {crumb.href ? (
+          <a href={crumb.href} class="hover:text-cedar no-underline transition-colors">
+            {crumb.label}
+          </a>
+        ) : (
+          <span class="text-bark font-medium">{crumb.label}</span>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

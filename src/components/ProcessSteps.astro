@@ -1,0 +1,53 @@
+---
+interface Step {
+  step: number;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  steps: Step[];
+  heading?: string;
+  overline?: string;
+}
+
+const { steps, heading = 'Our Process', overline = 'HOW WE WORK' } = Astro.props;
+---
+
+<div>
+  <div class="text-center mb-12">
+    <span class="overline">{overline}</span>
+    {heading && <h2 class="font-serif text-forest text-3xl lg:text-[3rem] mb-3">{heading}</h2>}
+    <div class="gold-line-center mt-4"></div>
+  </div>
+
+  <!-- Desktop: Horizontal -->
+  <div class="hidden md:flex items-start justify-between relative">
+    <!-- Connecting gold line -->
+    <div class="absolute top-6 left-[12%] right-[12%] h-px bg-gradient-to-r from-gold/30 via-gold to-gold/30"></div>
+
+    {steps.map(step => (
+      <div class="relative flex flex-col items-center text-center flex-1 px-6">
+        <div class="w-12 h-12 rounded-full bg-white border-2 border-gold flex items-center justify-center relative z-10">
+          <span class="font-serif text-lg gold-text font-bold">{step.step}</span>
+        </div>
+        <h3 class="font-sans font-semibold text-forest text-[0.9375rem] mt-4 mb-2">{step.title}</h3>
+        <p class="text-bark-light text-sm leading-relaxed max-w-[220px]">{step.description}</p>
+      </div>
+    ))}
+  </div>
+
+  <!-- Mobile: Vertical -->
+  <div class="md:hidden relative pl-10">
+    <div class="absolute left-[18px] top-0 bottom-0 w-px bg-gradient-to-b from-gold to-gold/20"></div>
+    {steps.map(step => (
+      <div class="relative mb-10 last:mb-0">
+        <div class="absolute -left-10 top-0 w-9 h-9 rounded-full bg-white border-2 border-gold flex items-center justify-center">
+          <span class="font-serif text-sm gold-text font-bold">{step.step}</span>
+        </div>
+        <h3 class="font-sans font-semibold text-forest text-base mb-1">{step.title}</h3>
+        <p class="text-bark-light text-sm leading-relaxed">{step.description}</p>
+      </div>
+    ))}
+  </div>
+</div>

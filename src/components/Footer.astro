@@ -1,0 +1,174 @@
+---
+import { site } from '../data/site';
+import { services } from '../data/services';
+import { locations } from '../data/locations';
+---
+
+<footer class="site-footer">
+  <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+      <!-- Brand -->
+      <div>
+        <a href="/" style="text-decoration: none; display: inline-block;">
+          <img
+            src="/images/Mission-Decks-Logo-main.png"
+            alt="Mission Decks & Design"
+            style="height: 60px; width: auto; filter: brightness(0) invert(1); opacity: 0.9;"
+          />
+        </a>
+        <p class="footer-desc">
+          Premium custom decks, outdoor kitchens, pergolas, and complete backyard transformations in Holly Springs and the NC Triangle.
+        </p>
+        <div style="display: flex; gap: 16px; margin-top: 20px;">
+          <a href={site.social.facebook} class="footer-social" aria-label="Facebook" target="_blank" rel="noopener">FB</a>
+          <a href={site.social.instagram} class="footer-social" aria-label="Instagram" target="_blank" rel="noopener">IG</a>
+          <a href={site.social.google} class="footer-social" aria-label="Google" target="_blank" rel="noopener">Google</a>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <h3 class="footer-heading">Services</h3>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          {services.map(service => (
+            <li style="margin-bottom: 10px;">
+              <a href={`/services/${service.slug}/`} class="footer-link">
+                {service.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Service Areas -->
+      <div>
+        <h3 class="footer-heading">Service Areas</h3>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          {locations.map(location => (
+            <li style="margin-bottom: 10px;">
+              <a href={`/service-areas/${location.slug}/`} class="footer-link">
+                {location.name}, NC
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h3 class="footer-heading">Contact</h3>
+        <address style="font-style: normal;">
+          <p class="footer-desc" style="margin-bottom: 12px;">{site.address.full}</p>
+          <p style="margin-bottom: 12px;">
+            <a href={`tel:${site.phoneRaw}`} class="footer-phone">
+              {site.phone}
+            </a>
+          </p>
+          <p style="margin-bottom: 0;">
+            <a href={`mailto:${site.email}`} class="footer-link">
+              {site.email}
+            </a>
+          </p>
+        </address>
+        <div style="margin-top: 24px;">
+          <a href="/contact/" class="footer-btn">
+            Schedule a Consultation
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div style="border-top: 1px solid rgba(255,255,255,0.1);">
+    <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <p style="font-size: 12px; color: #8a8278; margin: 0;">
+        &copy; {new Date().getFullYear()} {site.name}. All rights reserved.
+      </p>
+      <a href="/privacy/" style="font-size: 12px; color: #8a8278; text-decoration: none; transition: color 0.3s;">
+        Privacy Policy
+      </a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: #1B3329 !important;
+    color: #c8c0b4;
+  }
+  .footer-heading {
+    color: #ffffff !important;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+  .footer-desc {
+    color: #a89e90 !important;
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    margin-top: 1rem;
+    margin-bottom: 0;
+    overflow: visible;
+    display: block;
+    word-wrap: break-word;
+  }
+  .site-footer address {
+    overflow: visible;
+  }
+  .site-footer address p {
+    margin-bottom: 12px;
+    overflow: visible;
+    word-wrap: break-word;
+  }
+  .footer-link {
+    color: #a89e90 !important;
+    font-size: 0.8125rem;
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+  .footer-link:hover {
+    color: #ffffff !important;
+  }
+  .footer-social {
+    color: #a89e90 !important;
+    font-size: 0.8125rem;
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+  .footer-social:hover {
+    color: #ffffff !important;
+  }
+  .footer-phone {
+    color: #E2C284 !important;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+  .footer-phone:hover {
+    color: #ffffff !important;
+  }
+  .footer-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: #1B3329 !important;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s;
+  }
+  .footer-btn:hover {
+    background-color: #F5F1EB;
+    color: #1B3329 !important;
+  }
+</style>

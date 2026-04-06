@@ -1,0 +1,130 @@
+---
+import Container from './Container.astro';
+import { site } from '../data/site';
+
+interface Props {
+  overline?: string;
+  heading?: string;
+  text?: string;
+  buttonText?: string;
+  buttonHref?: string;
+}
+
+const {
+  overline = 'BEGIN YOUR PROJECT',
+  heading = "Let's Create Something Extraordinary",
+  text = `Schedule a private design consultation and receive a detailed, personalized proposal for your outdoor living project.`,
+  buttonText = 'Schedule a Consultation',
+  buttonHref = '/contact/',
+} = Astro.props;
+---
+
+<section class="cta-section">
+  <Container>
+    <div class="cta-inner">
+      <span class="cta-overline">{overline}</span>
+      <h2 class="cta-heading">{heading}</h2>
+      <div class="cta-gold-line"></div>
+      <p class="cta-text">{text}</p>
+      <div class="cta-actions">
+        <a href={buttonHref} class="cta-btn">{buttonText}</a>
+        <a href={`tel:${site.phoneRaw}`} class="cta-phone-btn">
+          Call {site.phone}
+        </a>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .cta-section {
+    background-color: #2C4A3E;
+    padding: 80px 0;
+  }
+  .cta-inner {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .cta-overline {
+    display: inline-block;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #E2C284;
+    margin-bottom: 1.25rem;
+  }
+  .cta-heading {
+    font-family: "Playfair Display", Georgia, serif;
+    color: #ffffff !important;
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    line-height: 1.15;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+  }
+  .cta-gold-line {
+    width: 50px;
+    height: 2px;
+    background: linear-gradient(90deg, #C5A059, #E2C284);
+    margin: 0 auto 1.5rem;
+  }
+  .cta-text {
+    color: #c8c0b4 !important;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+  .cta-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .cta-actions { flex-direction: row; justify-content: center; }
+  }
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 32px;
+    background-color: #ffffff;
+    color: #2C4A3E !important;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+  .cta-btn:hover {
+    background-color: #F5F1EB;
+    color: #2C4A3E !important;
+  }
+  .cta-phone-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 32px;
+    background-color: transparent;
+    color: #ffffff !important;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+  .cta-phone-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.7);
+    color: #ffffff !important;
+  }
+</style>

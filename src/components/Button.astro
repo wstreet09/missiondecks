@@ -1,0 +1,35 @@
+---
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'on-dark' | 'gold';
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+}
+
+const { href, variant = 'primary', size = 'md', class: className = '' } = Astro.props;
+
+const variants = {
+  primary: 'bg-cedar text-white hover:bg-cedar-light border-transparent',
+  secondary: 'bg-transparent text-forest border-forest hover:bg-forest hover:text-white',
+  'on-dark': 'bg-white text-forest hover:bg-stone border-transparent',
+  gold: 'bg-transparent text-gold border-gold hover:bg-gold hover:text-white',
+};
+
+const sizes = {
+  sm: 'px-5 py-2 text-xs tracking-[0.1em] uppercase',
+  md: 'px-8 py-3.5 text-sm tracking-[0.06em]',
+  lg: 'px-10 py-4 text-[0.9375rem] tracking-[0.06em]',
+};
+---
+
+<a
+  href={href}
+  class:list={[
+    'inline-flex items-center justify-center font-semibold rounded-[6px] border-2 no-underline transition-all duration-300',
+    variants[variant],
+    sizes[size],
+    className,
+  ]}
+>
+  <slot />
+</a>

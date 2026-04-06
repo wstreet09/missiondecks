@@ -1,0 +1,118 @@
+---
+import { services } from '../data/services';
+import { locations } from '../data/locations';
+
+interface Props {
+  activeServiceSlug?: string;
+  activeLocationSlug?: string;
+}
+
+const { activeServiceSlug, activeLocationSlug } = Astro.props;
+---
+
+<aside class="service-sidebar">
+  <!-- Services -->
+  <div>
+    <h3 class="sidebar-heading">Our Services</h3>
+    <ul class="sidebar-list">
+      {services.map(s => (
+        <li>
+          <a
+            href={`/services/${s.slug}/`}
+            class:list={['sidebar-link', { 'sidebar-link-active': s.slug === activeServiceSlug }]}
+          >
+            {s.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Divider -->
+  <div class="sidebar-divider"></div>
+
+  <!-- Locations -->
+  <div>
+    <h3 class="sidebar-heading">Areas We Serve</h3>
+    <ul class="sidebar-list">
+      {locations.map(l => (
+        <li>
+          <a
+            href={`/service-areas/${l.slug}/`}
+            class:list={['sidebar-link', { 'sidebar-link-active': l.slug === activeLocationSlug }]}
+          >
+            {l.name}, NC
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</aside>
+
+<style>
+  .service-sidebar {
+    position: sticky;
+    top: 120px;
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
+    padding-left: 24px;
+    border-left: 1px solid #D9D0C4;
+  }
+
+  .sidebar-heading {
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.6875rem !important;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #2C4A3E !important;
+    margin-bottom: 0.875rem;
+    line-height: 1;
+  }
+
+  .sidebar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .sidebar-list li {
+    margin-bottom: 2px;
+  }
+
+  .sidebar-link {
+    display: block;
+    padding: 6px 0 6px 12px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: #6B5D50 !important;
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    transition: all 0.2s ease;
+    line-height: 1.4;
+  }
+
+  .sidebar-link:hover {
+    color: #2C4A3E !important;
+    border-left-color: #D9D0C4;
+  }
+
+  .sidebar-link-active {
+    color: #C5A059 !important;
+    font-weight: 600;
+    border-left-color: #C5A059;
+  }
+
+  .sidebar-link-active:hover {
+    color: #C5A059 !important;
+    border-left-color: #C5A059;
+  }
+
+  .sidebar-divider {
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, #C5A059, #E2C284);
+    margin: 1.5rem 0;
+  }
+</style>

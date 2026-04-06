@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import HeroSection from '../../components/HeroSection.astro';
+import Section from '../../components/Section.astro';
+import Container from '../../components/Container.astro';
+import LocationCard from '../../components/LocationCard.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CTASection from '../../components/CTASection.astro';
+import GoogleMap from '../../components/GoogleMap.astro';
+import { locations } from '../../data/locations';
+---
+
+<BaseLayout
+  title="Service Areas | Mission Decks & Design"
+  description="Mission Decks & Design serves Holly Springs, Apex, Cary, Fuquay-Varina, Sanford & Raleigh NC. Custom decks and outdoor living across the Triangle."
+>
+  <HeroSection
+    heading="Serving the NC Triangle"
+    subtitle="Custom decks and outdoor living spaces in Holly Springs, Apex, Cary, Fuquay-Varina, Sanford, and Raleigh."
+    image="/images/areas/composite-deck-cable-railing.jpg"
+    imageAlt="Map of Mission Decks & Design service areas in the NC Triangle"
+    compact
+  />
+
+  <Section bg="white" padding="sm">
+    <Container>
+      <Breadcrumbs items={[{ label: 'Service Areas' }]} />
+    </Container>
+  </Section>
+
+  <Section bg="white">
+    <Container>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {locations.map(location => (
+          <LocationCard
+            name={location.name}
+            neighborhoods={location.neighborhoods}
+            href={`/service-areas/${location.slug}/`}
+          />
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <GoogleMap areaName="Holly Springs & the NC Triangle" />
+
+  <CTASection />
+</BaseLayout>

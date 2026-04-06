@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import HeroSection from '../../components/HeroSection.astro';
+import Section from '../../components/Section.astro';
+import Container from '../../components/Container.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CTASection from '../../components/CTASection.astro';
+import { services } from '../../data/services';
+---
+
+<BaseLayout
+  title="Our Services | Mission Decks & Design"
+  description="Custom decks, outdoor kitchens, pergolas, lighting, fencing, and screened porches. Explore our full range of outdoor living services in the NC Triangle."
+>
+  <HeroSection
+    heading="Our Custom Building Services"
+    subtitle="From custom decks to complete backyard transformations, we design and build outdoor spaces that fit your home, lifestyle, and budget."
+    image="/images/areas/composite-deck-cable-railing.jpg"
+    imageAlt="Range of outdoor living services by Mission Decks & Design"
+    compact
+  />
+
+  <Section bg="white" padding="sm">
+    <Container>
+      <Breadcrumbs items={[{ label: 'Services' }]} />
+    </Container>
+  </Section>
+
+  <Section bg="white">
+    <Container>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {services.map(service => (
+          <ServiceCard
+            name={service.name}
+            description={service.shortDescription}
+            href={`/services/${service.slug}/`}
+            image={service.image}
+          />
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <CTASection />
+</BaseLayout>

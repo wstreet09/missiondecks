@@ -1,0 +1,19 @@
+---
+interface Props {
+  name: string;
+  neighborhoods: string[];
+  href: string;
+}
+
+const { name, neighborhoods, href } = Astro.props;
+---
+
+<a href={href} class="group block bg-white rounded-[8px] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-400 no-underline p-7 border-t-2 border-transparent hover:border-gold">
+  <h3 class="font-serif text-forest text-xl mb-2">{name}, NC</h3>
+  <p class="text-bark-light text-sm leading-relaxed mb-4">
+    Serving {neighborhoods.slice(0, 3).join(', ')} and surrounding neighborhoods.
+  </p>
+  <span class="inline-flex items-center text-gold font-semibold text-xs tracking-[0.15em] uppercase group-hover:gap-2.5 gap-1.5 transition-all duration-300">
+    Explore Area <span class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+  </span>
+</a>

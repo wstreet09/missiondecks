@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Container from '../components/Container.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ContactForm from '../components/ContactForm.astro';
+import GoogleMap from '../components/GoogleMap.astro';
+import SchemaMarkup from '../components/SchemaMarkup.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout
+  title="Contact Us | Mission Decks & Design"
+  description="Request a consultation from Mission Decks & Design. Call (919) 432-8865 or fill out our form. Serving Holly Springs, Apex, Cary & the NC Triangle."
+>
+  <SchemaMarkup slot="schema" type="LocalBusiness" />
+
+  <Section bg="white" padding="sm">
+    <Container>
+      <Breadcrumbs items={[{ label: 'Contact' }]} />
+    </Container>
+  </Section>
+
+  <Section bg="white">
+    <Container>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+        <!-- Form -->
+        <div>
+          <h1 class="font-serif text-forest text-4xl lg:text-5xl mb-4">Start Your Project</h1>
+          <p class="text-bark-light text-lg mb-8">Fill out the form below and we will be in touch within one business day to discuss your project.</p>
+          <ContactForm />
+        </div>
+
+        <!-- Contact Info -->
+        <div>
+          <div class="bg-stone rounded-[8px] p-8 mb-6">
+            <h2 class="font-serif text-forest text-2xl mb-5">Get in Touch</h2>
+            <div class="space-y-4">
+              <div>
+                <h3 class="font-sans font-semibold text-forest text-sm uppercase tracking-wider mb-1">Phone</h3>
+                <a href={`tel:${site.phoneRaw}`} class="text-cedar text-lg font-medium no-underline hover:text-cedar-light">
+                  {site.phone}
+                </a>
+              </div>
+              <div>
+                <h3 class="font-sans font-semibold text-forest text-sm uppercase tracking-wider mb-1">Email</h3>
+                <a href={`mailto:${site.email}`} class="text-cedar no-underline hover:text-cedar-light">
+                  {site.email}
+                </a>
+              </div>
+              <div>
+                <h3 class="font-sans font-semibold text-forest text-sm uppercase tracking-wider mb-1">Address</h3>
+                <p class="text-bark">{site.address.full}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-stone rounded-[8px] p-8">
+            <h2 class="font-serif text-forest text-2xl mb-5">Office Hours</h2>
+            <dl class="space-y-2">
+              {site.hours.map(h => (
+                <div class="flex justify-between text-sm">
+                  <dt class="text-bark font-medium">{h.day}</dt>
+                  <dd class="text-bark-light">
+                    {h.close ? `${h.open} – ${h.close}` : h.open}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+            <p class="text-bark-light text-xs mt-4">Installation schedules can be adjusted to homeowner needs where possible.</p>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Project Photos -->
+  <Section bg="stone">
+    <Container>
+      <h2 class="font-serif text-forest text-3xl lg:text-[2.5rem] mb-8 text-center">See Our Work</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <img src="/images/areas/full-backyard-deck-panoramic.png" alt="Full backyard deck and porch transformation" class="rounded-[8px] w-full aspect-[4/3] object-cover md:col-span-2" width="720" height="360" loading="lazy" />
+        <img src="/images/services/pergola-outdoor-living-night.jpeg" alt="Pergola with string lights at night" class="rounded-[8px] w-full aspect-[4/3] object-cover" width="480" height="360" loading="lazy" />
+      </div>
+    </Container>
+  </Section>
+
+  <GoogleMap areaName="Holly Springs & the NC Triangle" />
+</BaseLayout>

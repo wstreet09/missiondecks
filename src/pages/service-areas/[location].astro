@@ -1,0 +1,181 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import HeroSection from '../../components/HeroSection.astro';
+import Section from '../../components/Section.astro';
+import Container from '../../components/Container.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import TestimonialBlock from '../../components/TestimonialBlock.astro';
+import CTASection from '../../components/CTASection.astro';
+import GoogleMap from '../../components/GoogleMap.astro';
+import SchemaMarkup from '../../components/SchemaMarkup.astro';
+import Button from '../../components/Button.astro';
+import { locations } from '../../data/locations';
+import { services } from '../../data/services';
+import { getCombinationsByLocation } from '../../data/combinations';
+
+export function getStaticPaths() {
+  return locations.map(location => ({
+    params: { location: location.slug },
+    props: { location },
+  }));
+}
+
+const { location } = Astro.props;
+const combos = getCombinationsByLocation(location.slug);
+
+const areaImages = [
+  '/images/areas/composite-deck-cable-railing.jpg',
+  '/images/areas/deck-screened-porch-combo.jpg',
+  '/images/areas/full-backyard-deck-panoramic.png',
+  '/images/areas/deck-railing-stairs-porch.jpeg',
+];
+---
+
+<BaseLayout
+  title={location.metaTitle}
+  description={location.metaDescription}
+>
+  <SchemaMarkup slot="schema" type="LocalBusiness" data={{
+    areaServed: {
+      '@type': 'City',
+      name: `${location.name}, NC`,
+    },
+  }} />
+
+  <HeroSection
+    heading={location.heroHeading}
+    subtitle={`Serving ${location.neighborhoods.slice(0, 3).join(', ')} and surrounding neighborhoods in ${location.name}.`}
+    image={areaImages[locations.indexOf(location) % areaImages.length]}
+    imageAlt={`Custom outdoor living in ${location.name} NC by Mission Decks & Design`}
+    compact
+  />
+
+  <Section bg="white" padding="sm">
+    <Container>
+      <Breadcrumbs items={[
+        { label: 'Service Areas', href: '/service-areas/' },
+        { label: `${location.name}, NC` },
+      ]} />
+    </Container>
+  </Section>
+
+  <!-- Local Insight -->
+  <Section bg="white">
+    <Container width="narrow">
+      <h2 class="font-serif text-forest text-3xl lg:text-[2.5rem] mb-6">Outdoor Living in {location.name}</h2>
+      <p class="text-bark text-lg leading-relaxed mb-6">{location.localInsight}</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
+        <div class="bg-stone rounded-[8px] p-5">
+          <h3 class="font-sans font-semibold text-forest text-base mb-2">Neighborhoods We Serve</h3>
+          <p class="text-bark-light text-sm">{location.neighborhoods.join(', ')}</p>
+        </div>
+        <div class="bg-stone rounded-[8px] p-5">
+          <h3 class="font-sans font-semibold text-forest text-base mb-2">ZIP Codes</h3>
+          <p class="text-bark-light text-sm">{location.zip.join(', ')}</p>
+        </div>
+        <div class="bg-stone rounded-[8px] p-5">
+          <h3 class="font-sans font-semibold text-forest text-base mb-2">Typical Yard Size</h3>
+          <p class="text-bark-light text-sm">{location.commonYardSize}</p>
+        </div>
+        <div class="bg-stone rounded-[8px] p-5">
+          <h3 class="font-sans font-semibold text-forest text-base mb-2">County</h3>
+          <p class="text-bark-light text-sm">{location.county}</p>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Soil & Environment -->
+  <Section bg="stone">
+    <Container>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <h2 class="font-serif text-forest text-3xl lg:text-[2.5rem] mb-6">Local Soil & Building Conditions</h2>
+          <p class="text-bark leading-relaxed mb-6">{location.soilType}</p>
+          <h3 class="font-sans font-semibold text-forest text-lg mb-3">Water & Irrigation Notes</h3>
+          <p class="text-bark-light leading-relaxed">{location.waterRestrictions}</p>
+        </div>
+        <div>
+          <h3 class="font-sans font-semibold text-forest text-lg mb-4">HOA & Building Guidelines</h3>
+          <p class="text-bark leading-relaxed mb-6">{location.hoaNotes}</p>
+          <h3 class="font-sans font-semibold text-forest text-lg mb-4">Local Landmarks</h3>
+          <ul class="space-y-4">
+            {location.landmarks.map(landmark => (
+              <li>
+                <span class="font-medium text-bark">{landmark.name}</span>
+                <span class="text-bark-light text-xs ml-2 uppercase tracking-wider">{landmark.type}</span>
+                <p class="text-bark-light text-sm mt-1">{landmark.description}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Project Photos -->
+  <Section bg="white">
+    <Container>
+      <h2 class="font-serif text-forest text-3xl lg:text-[2.5rem] mb-8">Our Work in the Triangle</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <img
+          src="/images/hero/composite-deck-screened-porch.jpeg"
+          alt={`Composite deck build near ${location.name} NC`}
+          class="rounded-[8px] w-full aspect-[4/3] object-cover"
+          width="480" height="360" loading="lazy"
+        />
+        <img
+          src="/images/services/deck-stairs-construction.jpeg"
+          alt={`Deck stairs and railing installation in the ${location.name} area`}
+          class="rounded-[8px] w-full aspect-[4/3] object-cover"
+          width="480" height="360" loading="lazy"
+        />
+        <img
+          src="/images/blog/gray-composite-deck-platform.jpeg"
+          alt={`Gray composite deck platform built for a ${location.name} homeowner`}
+          class="rounded-[8px] w-full aspect-[4/3] object-cover"
+          width="480" height="360" loading="lazy"
+        />
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Services in this area -->
+  <Section bg="stone">
+    <Container>
+      <h2 class="font-serif text-forest text-3xl lg:text-[2.5rem] mb-8">Services in {location.name}</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {combos.map(combo => (
+          <a
+            href={`/services/${combo.comboSlug}/${combo.locationSlug}/`}
+            class="block bg-stone rounded-[8px] p-5 no-underline hover:shadow-md transition-all duration-200 group"
+          >
+            <span class="text-forest font-medium group-hover:text-cedar transition-colors">{combo.pageName}</span>
+            <span class="block text-bark-light text-sm mt-1">View details &rarr;</span>
+          </a>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Testimonial -->
+  <Section bg="white">
+    <Container width="narrow">
+      <h2 class="font-serif text-forest text-3xl lg:text-[2.5rem] mb-8 text-center">From Our {location.name} Clients</h2>
+      <TestimonialBlock
+        quote={location.testimonial.quote}
+        name={location.testimonial.name}
+        location={location.testimonial.neighborhood}
+        rating={location.testimonial.rating}
+      />
+    </Container>
+  </Section>
+
+  <GoogleMap areaName={`${location.name}, NC`} />
+
+  <CTASection
+    heading={`Ready to Build in ${location.name}?`}
+    buttonText={`Request a Consultation in ${location.name}`}
+  />
+</BaseLayout>

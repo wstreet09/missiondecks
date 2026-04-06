@@ -1,0 +1,208 @@
+@import "tailwindcss";
+
+@theme {
+  /* Primary Colors */
+  --color-forest: #2C4A3E;
+  --color-forest-dark: #1B3329;
+  --color-cedar: #8B6914;
+  --color-cedar-light: #C4941A;
+  --color-gold: #C5A059;
+  --color-gold-light: #E2C284;
+
+  /* Neutral Colors */
+  --color-stone: #F5F1EB;
+  --color-stone-warm: #EDE6DA;
+  --color-bark: #3D3228;
+  --color-bark-light: #6B5D50;
+  --color-white: #FEFDFB;
+  --color-border: #D9D0C4;
+
+  /* Functional Colors */
+  --color-success: #3A7D5C;
+  --color-error: #B84233;
+
+  /* Typography */
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Montserrat", system-ui, sans-serif;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(61, 50, 40, 0.06);
+  --shadow-md: 0 4px 16px rgba(61, 50, 40, 0.08);
+  --shadow-lg: 0 12px 32px rgba(61, 50, 40, 0.1);
+  --shadow-nav: 0 2px 8px rgba(61, 50, 40, 0.05);
+
+  /* Border Radius */
+  --radius-card: 8px;
+  --radius-btn: 6px;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 32px;
+  --spacing-xl: 64px;
+  --spacing-2xl: 96px;
+  --spacing-3xl: 128px;
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-bark);
+  background-color: var(--color-white);
+  line-height: 1.75;
+  font-size: 1.0625rem;
+  font-weight: 400;
+  letter-spacing: 0.015em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  color: var(--color-forest);
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 4.5rem;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  font-size: 3rem;
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  font-family: var(--font-sans);
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.005em;
+}
+
+p {
+  margin-bottom: 1.125rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+/* Only style inline text links, not nav/button links */
+article a,
+.prose a {
+  color: var(--color-cedar);
+  text-decoration: underline;
+  text-decoration-color: var(--color-cedar);
+  text-underline-offset: 2px;
+}
+
+article a:hover,
+.prose a:hover {
+  color: var(--color-cedar-light);
+  text-decoration-color: var(--color-cedar-light);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ═══════════════════════════════════════════
+   Premium Gold Accent Utilities
+   ═══════════════════════════════════════════ */
+
+.gold-text {
+  background: linear-gradient(135deg, #C5A059 0%, #E2C284 50%, #C5A059 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gold-line {
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, #C5A059, #E2C284);
+  border: none;
+}
+
+.gold-line-center {
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, #C5A059, #E2C284);
+  border: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.overline {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.overline-light {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold-light);
+  display: block;
+  margin-bottom: 1rem;
+}
+
+/* ═══════════════════════════════════════════
+   Staggered Reveal Animation
+   ═══════════════════════════════════════════ */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  opacity: 0;
+  animation: fadeUp 0.7s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.25s; }
+.delay-3 { animation-delay: 0.4s; }
+.delay-4 { animation-delay: 0.55s; }
+.delay-5 { animation-delay: 0.7s; }
+
+/* ═══════════════════════════════════════════
+   Mobile typography
+   ═══════════════════════════════════════════ */
+
+@media (max-width: 640px) {
+  h1 { font-size: 2.75rem; }
+  h2 { font-size: 2rem; }
+  h3 { font-size: 1.25rem; }
+  body { font-size: 1rem; }
+}

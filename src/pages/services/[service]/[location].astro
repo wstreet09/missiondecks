@@ -1,0 +1,209 @@
+---
+import BaseLayout from '../../../components/BaseLayout.astro';
+import HeroSection from '../../../components/HeroSection.astro';
+import Section from '../../../components/Section.astro';
+import Container from '../../../components/Container.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import FAQAccordion from '../../../components/FAQAccordion.astro';
+import CTASection from '../../../components/CTASection.astro';
+import GoogleMap from '../../../components/GoogleMap.astro';
+import SchemaMarkup from '../../../components/SchemaMarkup.astro';
+import ServiceSidebar from '../../../components/ServiceSidebar.astro';
+import Button from '../../../components/Button.astro';
+import { combinations, getCombinationsByService, getCombinationsByLocation } from '../../../data/combinations';
+import { getServiceBySlug } from '../../../data/services';
+import { getLocationBySlug } from '../../../data/locations';
+
+export function getStaticPaths() {
+  return combinations.map(combo => ({
+    params: { service: combo.comboSlug, location: combo.locationSlug },
+    props: { combo },
+  }));
+}
+
+const { combo } = Astro.props;
+const service = getServiceBySlug(combo.serviceSlug)!;
+const location = getLocationBySlug(combo.locationSlug)!;
+
+const otherLocations = getCombinationsByService(combo.serviceSlug).filter(c => c.locationSlug !== combo.locationSlug);
+const otherServices = getCombinationsByLocation(combo.locationSlug).filter(c => c.serviceSlug !== combo.serviceSlug);
+---
+
+<BaseLayout
+  title={combo.metaTitle}
+  description={combo.metaDescription}
+>
+  <SchemaMarkup slot="schema" type="Service" data={{
+    name: combo.pageName,
+    description: combo.metaDescription,
+    url: `https://missiondecks.com/services/${combo.comboSlug}/${combo.locationSlug}/`,
+    areaServed: {
+      '@type': 'City',
+      name: `${location.name}, NC`,
+    },
+  }} />
+
+  <HeroSection
+    heading={combo.h1}
+    subtitle={`Serving ${location.neighborhoods.slice(0, 3).join(', ')} and surrounding neighborhoods.`}
+    image={service.image}
+    imageAlt={`${service.name} in ${location.name} NC by Mission Decks & Design`}
+    compact
+  />
+
+  <Section bg="white" padding="sm">
+    <Container>
+      <Breadcrumbs items={[
+        { label: 'Services', href: '/services/' },
+        { label: service.name, href: `/services/${service.slug}/` },
+        { label: `${location.name}, NC` },
+      ]} />
+    </Container>
+  </Section>
+
+  <!-- Main content + Sidebar grid -->
+  <Section bg="white">
+    <Container width="wide">
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-12 lg:gap-16">
+
+        <!-- Main content column -->
+        <div>
+          <!-- Unique Intro -->
+          <div class="mb-16" style="max-width: 720px;">
+            <p class="text-bark text-lg leading-relaxed">{combo.uniqueIntro}</p>
+          </div>
+
+          <!-- Local Problems + Pricing -->
+          <div class="mb-16 bg-stone rounded-[12px] p-8 lg:p-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+              <div>
+                <h2 class="font-serif text-forest text-3xl lg:text-[2.5rem] mb-6">Local Challenges We Solve</h2>
+                <ul class="space-y-4" style="list-style: none; padding: 0; margin: 0;">
+                  {combo.localProblems.map(problem => (
+                    <li class="flex items-start gap-3 bg-white rounded-[8px] p-4">
+                      <span style="color: #B84233; font-weight: bold; font-size: 1.125rem; margin-top: 2px; flex-shrink: 0;">!</span>
+                      <span class="text-bark text-base">{problem}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h3 class="font-sans font-semibold text-forest text-xl mb-4">Pricing in {location.name}</h3>
+                <p class="text-bark leading-relaxed mb-8">{combo.pricingNote}</p>
+
+                <h3 class="font-sans font-semibold text-forest text-xl mb-4">Local Tip</h3>
+                <div class="bg-white rounded-[8px] p-5" style="border-left: 3px solid #C5A059;">
+                  <p class="text-bark leading-relaxed">{combo.localTip}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Photos -->
+          <div class="mb-16">
+            <h2 class="font-serif text-forest text-3xl lg:text-[2.5rem] mb-8">Project Gallery</h2>
+            <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
+              <img src="/images/hero/composite-deck-screened-porch.jpeg" alt={`${service.name} project near ${location.name} NC`} class="rounded-[8px] w-full aspect-[4/3] object-cover" width="480" height="360" loading="lazy" />
+              <img src="/images/blog/spacious-deck-railing-view.jpeg" alt={`Spacious deck with railing in the ${location.name} area`} class="rounded-[8px] w-full aspect-[4/3] object-cover" width="480" height="360" loading="lazy" />
+              <img src="/images/areas/deck-railing-stairs-porch.jpeg" alt={`Deck with stairs and screened porch in ${location.name}`} class="rounded-[8px] w-full aspect-[4/3] object-cover hidden lg:block" width="480" height="360" loading="lazy" />
+            </div>
+          </div>
+
+          <!-- Features -->
+          <div class="mb-16 bg-stone rounded-[12px] p-8 lg:p-10">
+            <h2 class="font-serif text-forest text-3xl lg:text-[2.5rem] mb-8">What We Include</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {service.features.map(feature => (
+                <div class="flex items-start gap-3 bg-white rounded-[8px] p-4">
+                  <span style="color: #C5A059; font-weight: bold; font-size: 1.125rem; margin-top: 2px; flex-shrink: 0;">&#10003;</span>
+                  <span class="text-bark text-base">{feature}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Area Details -->
+          <div class="mb-16">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+              <div>
+                <h2 class="font-serif text-forest text-3xl lg:text-[2.5rem] mb-6">About {location.name}</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                  <div class="bg-stone rounded-[8px] p-4">
+                    <span class="text-bark-light text-xs uppercase tracking-wider">Neighborhoods</span>
+                    <p class="text-bark text-sm mt-1">{location.neighborhoods.join(', ')}</p>
+                  </div>
+                  <div class="bg-stone rounded-[8px] p-4">
+                    <span class="text-bark-light text-xs uppercase tracking-wider">ZIP Codes</span>
+                    <p class="text-bark text-sm mt-1">{location.zip.join(', ')}</p>
+                  </div>
+                </div>
+                <h3 class="font-sans font-semibold text-forest text-lg mb-3">Soil Conditions</h3>
+                <p class="text-bark-light text-sm leading-relaxed">{location.soilType}</p>
+              </div>
+              <div>
+                <h3 class="font-sans font-semibold text-forest text-lg mb-3">HOA Notes</h3>
+                <p class="text-bark-light text-sm leading-relaxed mb-6">{location.hoaNotes}</p>
+                <h3 class="font-sans font-semibold text-forest text-lg mb-3">Local Landmarks</h3>
+                <ul class="space-y-3" style="list-style: none; padding: 0; margin: 0;">
+                  {location.landmarks.slice(0, 2).map(landmark => (
+                    <li>
+                      <span class="font-medium text-bark text-sm">{landmark.name}</span>
+                      <p class="text-bark-light text-xs mt-1">{landmark.description}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQs -->
+          <div class="mb-16">
+            <FAQAccordion faqs={combo.uniqueFaqs} heading={`${service.name} in ${location.name} FAQs`} />
+          </div>
+
+          <!-- Related Links -->
+          <div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <h2 class="font-serif text-forest text-2xl mb-6">{service.name} in Other Areas</h2>
+                <div class="space-y-3">
+                  {otherLocations.map(c => (
+                    <a href={`/services/${c.comboSlug}/${c.locationSlug}/`} class="block bg-stone rounded-[8px] p-4 no-underline hover:shadow-md transition-all duration-200 group">
+                      <span style="color: #2C4A3E; font-weight: 500; font-size: 0.875rem;" class="group-hover:text-cedar transition-colors">{c.pageName} &rarr;</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <h2 class="font-serif text-forest text-2xl mb-6">Other Services in {location.name}</h2>
+                <div class="space-y-3">
+                  {otherServices.map(c => (
+                    <a href={`/services/${c.comboSlug}/${c.locationSlug}/`} class="block bg-stone rounded-[8px] p-4 no-underline hover:shadow-md transition-all duration-200 group">
+                      <span style="color: #2C4A3E; font-weight: 500; font-size: 0.875rem;" class="group-hover:text-cedar transition-colors">{c.pageName} &rarr;</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar column -->
+        <div class="hidden lg:block">
+          <ServiceSidebar
+            activeServiceSlug={combo.serviceSlug}
+            activeLocationSlug={combo.locationSlug}
+          />
+        </div>
+
+      </div>
+    </Container>
+  </Section>
+
+  <GoogleMap areaName={`${location.name}, NC`} />
+
+  <CTASection
+    heading={`Ready for ${service.name} in ${location.name}?`}
+    buttonText={`Request a Consultation in ${location.name}`}
+  />
+</BaseLayout>

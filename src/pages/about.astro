@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import Section from '../components/Section.astro';
+import Container from '../components/Container.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CTASection from '../components/CTASection.astro';
+import SchemaMarkup from '../components/SchemaMarkup.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout
+  title="About Us | Mission Decks & Design"
+  description="Meet the team behind Mission Decks & Design. Owner-led deck building and outdoor living company serving Holly Springs, Apex, Cary & the NC Triangle."
+>
+  <SchemaMarkup slot="schema" type="LocalBusiness" />
+
+  <HeroSection
+    overline="OUR STORY"
+    heading="The Story Behind Mission Decks"
+    subtitle="A locally owned outdoor living studio based in Holly Springs, NC — designing and building custom spaces where families gather, relax, and make memories."
+    image="/images/areas/composite-deck-cable-railing.jpg"
+    imageAlt="Mission Decks & Design team in Holly Springs NC"
+    compact
+  />
+
+  <Section bg="white" padding="sm">
+    <Container>
+      <Breadcrumbs items={[{ label: 'About' }]} />
+    </Container>
+  </Section>
+
+  <Section bg="white">
+    <Container>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div>
+          <h2 class="font-serif text-forest text-3xl lg:text-[2.5rem] mb-6">Built on Trust, Crafted with Care</h2>
+          <div class="space-y-4 text-bark leading-relaxed">
+            <p>Mission Decks & Design started with a simple idea: homeowners deserve an outdoor living contractor who treats their project like it matters. Not a number on a production schedule, not a template with the address changed — a genuine partnership where your space, your priorities, and your budget drive every decision.</p>
+            <p>We are based in Holly Springs, NC, and we serve the Triangle — Holly Springs, Apex, Cary, Fuquay-Varina, Sanford, and Raleigh. Every project is owner-led, which means you work directly with the person who designed your space and who will be on-site during construction.</p>
+            <p>From the first conversation to the final walkthrough, we keep things clear, honest, and straightforward. Detailed estimates with no hidden numbers. Realistic timelines that we actually meet. Communication that does not disappear once the contract is signed.</p>
+          </div>
+        </div>
+        <div>
+          <img
+            src="/images/areas/deck-screened-porch-combo.jpg"
+            alt="Mission Decks & Design owner consulting with a Holly Springs homeowner"
+            class="rounded-[8px] w-full aspect-[3/2] object-cover"
+            width="720"
+            height="480"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <Section bg="stone">
+    <Container>
+      <h2 class="font-serif text-forest text-3xl lg:text-[2.5rem] mb-10 text-center">What Sets Us Apart</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white rounded-[8px] p-6 shadow-sm">
+          <h3 class="font-sans font-semibold text-forest text-lg mb-3">Truly Custom Designs</h3>
+          <p class="text-bark-light text-base leading-relaxed">Every deck and outdoor structure is designed around the way you actually use your space — not just standard templates or one-size-fits-all layouts.</p>
+        </div>
+        <div class="bg-white rounded-[8px] p-6 shadow-sm">
+          <h3 class="font-sans font-semibold text-forest text-lg mb-3">Design + Build Expertise</h3>
+          <p class="text-bark-light text-base leading-relaxed">We handle both the creative design and the structural details, so your project looks great and stands up to years of use and North Carolina weather.</p>
+        </div>
+        <div class="bg-white rounded-[8px] p-6 shadow-sm">
+          <h3 class="font-sans font-semibold text-forest text-lg mb-3">Local, Owner-Led Service</h3>
+          <p class="text-bark-light text-base leading-relaxed">As a Holly Springs-based business, you work directly with a local team that understands Triangle-area homes, neighborhoods, and building codes.</p>
+        </div>
+        <div class="bg-white rounded-[8px] p-6 shadow-sm">
+          <h3 class="font-sans font-semibold text-forest text-lg mb-3">Complete Outdoor Solutions</h3>
+          <p class="text-bark-light text-base leading-relaxed">From custom decks and porches to outdoor kitchens, pergolas, lighting, and privacy solutions — one trusted partner for your full backyard transformation.</p>
+        </div>
+        <div class="bg-white rounded-[8px] p-6 shadow-sm">
+          <h3 class="font-sans font-semibold text-forest text-lg mb-3">Transparent Process</h3>
+          <p class="text-bark-light text-base leading-relaxed">Clear, itemized estimates, realistic timelines, and consistent communication mean fewer surprises and a smoother experience from start to finish.</p>
+        </div>
+        <div class="bg-white rounded-[8px] p-6 shadow-sm">
+          <h3 class="font-sans font-semibold text-forest text-lg mb-3">Quality Craftsmanship</h3>
+          <p class="text-bark-light text-base leading-relaxed">We recommend and use materials that balance aesthetics, durability, and maintenance needs, backed by careful, detail-focused installation.</p>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Recent Work -->
+  <Section bg="white">
+    <Container>
+      <h2 class="font-serif text-forest text-3xl lg:text-[2.5rem] mb-8 text-center">Our Recent Work</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <img src="/images/hero/composite-deck-screened-porch.jpeg" alt="Composite deck with screened porch in Holly Springs" class="rounded-[8px] w-full aspect-square object-cover" width="360" height="360" loading="lazy" />
+        <img src="/images/services/pergola-pool-daytime.jpeg" alt="Custom pergola by the pool" class="rounded-[8px] w-full aspect-square object-cover" width="360" height="360" loading="lazy" />
+        <img src="/images/areas/deck-railing-stairs-porch.jpeg" alt="Deck with metal railing and stairs" class="rounded-[8px] w-full aspect-square object-cover" width="360" height="360" loading="lazy" />
+        <img src="/images/services/screened-porch-horizontal-skirting.jpeg" alt="Screened porch with horizontal skirting" class="rounded-[8px] w-full aspect-square object-cover" width="360" height="360" loading="lazy" />
+      </div>
+    </Container>
+  </Section>
+
+  <Section bg="stone">
+    <Container width="narrow">
+      <h2 class="font-serif text-forest text-3xl lg:text-[2.5rem] mb-6">Our Service Area</h2>
+      <p class="text-bark leading-relaxed mb-4">We proudly serve homeowners throughout the Triangle area of North Carolina, including:</p>
+      <ul class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
+        <li><a href="/service-areas/holly-springs-nc/" class="text-cedar font-medium no-underline hover:text-cedar-light">Holly Springs, NC</a></li>
+        <li><a href="/service-areas/apex-nc/" class="text-cedar font-medium no-underline hover:text-cedar-light">Apex, NC</a></li>
+        <li><a href="/service-areas/cary-nc/" class="text-cedar font-medium no-underline hover:text-cedar-light">Cary, NC</a></li>
+        <li><a href="/service-areas/fuquay-varina-nc/" class="text-cedar font-medium no-underline hover:text-cedar-light">Fuquay-Varina, NC</a></li>
+        <li><a href="/service-areas/sanford-nc/" class="text-cedar font-medium no-underline hover:text-cedar-light">Sanford, NC</a></li>
+        <li><a href="/service-areas/raleigh-nc/" class="text-cedar font-medium no-underline hover:text-cedar-light">Raleigh, NC</a></li>
+      </ul>
+    </Container>
+  </Section>
+
+  <CTASection />
+</BaseLayout>

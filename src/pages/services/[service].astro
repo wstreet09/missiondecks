@@ -1,0 +1,168 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import HeroSection from '../../components/HeroSection.astro';
+import Section from '../../components/Section.astro';
+import Container from '../../components/Container.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+import CTASection from '../../components/CTASection.astro';
+import SchemaMarkup from '../../components/SchemaMarkup.astro';
+import ServiceSidebar from '../../components/ServiceSidebar.astro';
+import Button from '../../components/Button.astro';
+import { services } from '../../data/services';
+import { locations } from '../../data/locations';
+import { getCombinationsByService } from '../../data/combinations';
+
+export function getStaticPaths() {
+  return services.map(service => ({
+    params: { service: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+const combos = getCombinationsByService(service.slug);
+---
+
+<BaseLayout
+  title={service.metaTitle}
+  description={service.metaDescription}
+>
+  <SchemaMarkup slot="schema" type="Service" data={{
+    name: service.name,
+    description: service.shortDescription,
+    url: `https://missiondecks.com/services/${service.slug}/`,
+  }} />
+
+  <HeroSection
+    heading={service.heroHeading}
+    subtitle={service.shortDescription}
+    image={service.image}
+    imageAlt={`${service.name} by Mission Decks & Design in the NC Triangle`}
+    compact
+  />
+
+  <Section bg="white" padding="sm">
+    <Container>
+      <Breadcrumbs items={[
+        { label: 'Services', href: '/services/' },
+        { label: service.name },
+      ]} />
+    </Container>
+  </Section>
+
+  <!-- Main content + Sidebar grid -->
+  <Section bg="white">
+    <Container width="wide">
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-12 lg:gap-16">
+
+        <!-- Main content column -->
+        <div>
+          <!-- Description + Images -->
+          <div class="mb-16">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div class="text-bark">
+                <p class="text-lg leading-relaxed">{service.description}</p>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <img
+                  src="/images/areas/composite-deck-cable-railing.jpg"
+                  alt={`${service.name} project with cable railing by Mission Decks`}
+                  class="rounded-[8px] w-full aspect-[4/3] object-cover"
+                  width="360" height="270" loading="lazy"
+                />
+                <img
+                  src="/images/blog/deck-stairs-black-railing.jpeg"
+                  alt={`${service.name} stairs and railing detail`}
+                  class="rounded-[8px] w-full aspect-[4/3] object-cover"
+                  width="360" height="270" loading="lazy"
+                />
+                <img
+                  src="/images/services/deck-stairs-construction.jpeg"
+                  alt={`${service.name} construction in progress`}
+                  class="rounded-[8px] w-full aspect-[4/3] object-cover col-span-2"
+                  width="720" height="270" loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Features -->
+          <div class="mb-16 bg-stone rounded-[12px] p-8 lg:p-10">
+            <h2 class="font-serif text-forest text-3xl lg:text-[2.5rem] mb-8">What We Include</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {service.features.map(feature => (
+                <div class="flex items-start gap-3 bg-white rounded-[8px] p-4">
+                  <span style="color: #C5A059; font-weight: bold; font-size: 1.125rem; margin-top: 2px; flex-shrink: 0;">&#10003;</span>
+                  <span class="text-bark text-base">{feature}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Process -->
+          <div class="mb-16">
+            <ProcessSteps steps={service.process} heading={`Our ${service.name} Process`} />
+          </div>
+
+          <!-- Common Issues -->
+          <div class="mb-16 bg-stone rounded-[12px] p-8 lg:p-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+              <div>
+                <h2 class="font-serif text-forest text-3xl lg:text-[2.5rem] mb-6">Common Issues We See</h2>
+                <p class="text-bark-light mb-6">Problems we frequently diagnose and solve for Triangle homeowners:</p>
+                <ul class="space-y-3" style="list-style: none; padding: 0; margin: 0;">
+                  {service.commonIssues.map(issue => (
+                    <li class="flex items-start gap-3">
+                      <span style="color: #B84233; font-weight: bold; margin-top: 2px; flex-shrink: 0;">!</span>
+                      <span class="text-bark text-base">{issue}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h3 class="font-sans font-semibold text-forest text-xl mb-4">Pricing</h3>
+                <p class="text-bark mb-4">{service.priceRange}</p>
+                <h3 class="font-sans font-semibold text-forest text-xl mb-4 mt-8">Seasonal Notes</h3>
+                <p class="text-bark">{service.seasonalNotes}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Location Links -->
+          <div class="mb-16">
+            <h2 class="font-serif text-forest text-3xl lg:text-[2.5rem] mb-8">{service.name} by Location</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {combos.map(combo => (
+                <a
+                  href={`/services/${combo.comboSlug}/${combo.locationSlug}/`}
+                  class="block bg-stone rounded-[8px] p-5 no-underline hover:shadow-md transition-all duration-200 group"
+                >
+                  <span style="color: #2C4A3E; font-weight: 500;" class="group-hover:text-cedar transition-colors">{combo.pageName}</span>
+                  <span class="block text-bark-light text-sm mt-1">View local details &rarr;</span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <!-- FAQs -->
+          <div>
+            <FAQAccordion faqs={service.faqs} heading={`${service.name} FAQs`} />
+          </div>
+        </div>
+
+        <!-- Sidebar column -->
+        <div class="hidden lg:block">
+          <ServiceSidebar activeServiceSlug={service.slug} />
+        </div>
+
+      </div>
+    </Container>
+  </Section>
+
+  <CTASection
+    heading={`Ready to Start Your ${service.name} Project?`}
+    buttonText={`Request a ${service.name} Consultation`}
+  />
+</BaseLayout>

@@ -1,0 +1,192 @@
+---
+import { site } from '../data/site';
+
+interface Props {
+  overline?: string;
+  heading: string;
+  subtitle?: string;
+  buttonText?: string;
+  buttonHref?: string;
+  secondaryButtonText?: string;
+  secondaryButtonHref?: string;
+  image?: string;
+  imageAlt?: string;
+  compact?: boolean;
+}
+
+const {
+  overline,
+  heading,
+  subtitle,
+  buttonText = 'Schedule a Consultation',
+  buttonHref = '/contact/',
+  secondaryButtonText,
+  secondaryButtonHref,
+  image = '/images/hero/aerial-deck-porch.jpeg',
+  imageAlt = 'Custom deck by Mission Decks & Design in Holly Springs NC',
+  compact = false,
+} = Astro.props;
+---
+
+<section class:list={['hero-section relative w-full overflow-hidden flex items-center', compact ? 'hero-compact' : 'hero-full']}>
+  <!-- Background image -->
+  <div class="absolute inset-0">
+    <img
+      src={image}
+      alt={imageAlt}
+      class="w-full h-full object-cover object-center"
+      width="1920"
+      height="1080"
+      loading="eager"
+    />
+    <div class="hero-overlay absolute inset-0"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 w-full py-20 lg:py-32">
+    <div style="max-width: 720px;">
+      {overline && (
+        <span class="hero-overline animate-fade-up delay-1">{overline}</span>
+      )}
+      <h1 class="hero-heading animate-fade-up delay-2">
+        {heading}
+      </h1>
+      <div class="hero-gold-line animate-fade-up delay-3"></div>
+      {subtitle && (
+        <p class="hero-subtitle animate-fade-up delay-4">
+          {subtitle}
+        </p>
+      )}
+      <div class="flex flex-col sm:flex-row items-start gap-4 animate-fade-up delay-5">
+        <a href={buttonHref} class="hero-btn-primary">
+          {buttonText}
+        </a>
+        {secondaryButtonText && secondaryButtonHref ? (
+          <a href={secondaryButtonHref} class="hero-btn-secondary">
+            {secondaryButtonText}
+          </a>
+        ) : (
+          <a href={`tel:${site.phoneRaw}`} class="hero-phone">
+            Call {site.phone}
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-full { min-height: 85vh; }
+  .hero-compact { min-height: 50vh; }
+
+  .hero-overlay {
+    background: linear-gradient(
+      to right,
+      rgba(10, 20, 15, 0.92) 0%,
+      rgba(10, 20, 15, 0.75) 40%,
+      rgba(10, 20, 15, 0.45) 100%
+    );
+  }
+
+  .hero-overline {
+    display: inline-block;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #E2C284;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-heading {
+    font-family: "Playfair Display", Georgia, serif;
+    color: #ffffff !important;
+    font-size: clamp(2.5rem, 5vw, 4.25rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-gold-line {
+    width: 50px;
+    height: 2px;
+    background: linear-gradient(90deg, #C5A059, #E2C284);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-subtitle {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    font-size: clamp(0.9375rem, 1.5vw, 1.125rem);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    max-width: 480px;
+  }
+
+  .hero-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 32px;
+    background-color: #ffffff;
+    color: #1B3329 !important;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+  .hero-btn-primary:hover {
+    background-color: #F5F1EB;
+    color: #1B3329 !important;
+  }
+
+  .hero-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 32px;
+    background-color: transparent;
+    color: #ffffff !important;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+  .hero-btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.8);
+    color: #ffffff !important;
+  }
+
+  .hero-phone {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 32px;
+    background-color: transparent;
+    color: #ffffff !important;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+  .hero-phone:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.7);
+    color: #ffffff !important;
+  }
+</style>
