@@ -28,7 +28,7 @@ const { Content } = await render(post);
   <SchemaMarkup slot="schema" type="Article" data={{
     headline: post.data.title,
     description: post.data.description,
-    datePublished: post.data.date,
+    datePublished: post.data.pubDate,
     author: {
       '@type': 'Organization',
       name: post.data.author,
@@ -50,7 +50,7 @@ const { Content } = await render(post);
       <article>
         <header class="mb-10">
           <time class="text-bark-light text-sm">
-            {new Date(post.data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            {new Date(post.data.pubDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
           </time>
           <h1 class="font-serif text-forest text-3xl lg:text-[2.75rem] leading-[1.15] mt-2 mb-4">{post.data.title}</h1>
           <p class="text-bark-light text-lg">{post.data.description}</p>

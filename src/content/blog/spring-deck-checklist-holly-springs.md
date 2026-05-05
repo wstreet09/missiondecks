@@ -1,7 +1,7 @@
 ---
 title: "Spring Deck Checklist for Holly Springs Homeowners"
 description: "10 things to check on your deck after a Triangle winter. Inspect footings, clean surfaces, and prepare for spring outdoor living in Holly Springs NC."
-date: "2025-03-15"
+pubDate: "2025-03-15"
 author: "Mission Decks & Design"
 image: "/images/blog/spacious-deck-railing-view.jpeg"
 tags: ["maintenance", "holly springs", "seasonal"]

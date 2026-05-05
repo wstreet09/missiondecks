@@ -1,7 +1,7 @@
 ---
 title: "Wood vs. Composite Decking in the NC Triangle"
 description: "Comparing wood and composite deck materials for Holly Springs, Apex, Cary and the Triangle climate. Cost, durability, maintenance and which is right for you."
-date: "2025-02-20"
+pubDate: "2025-02-20"
 author: "Mission Decks & Design"
 image: "/images/blog/composite-railing-closeup.jpeg"
 tags: ["materials", "composite", "wood", "guide"]
