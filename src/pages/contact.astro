@@ -49,8 +49,18 @@ import { site } from '../data/site';
                 </a>
               </div>
               <div>
-                <h3 class="font-sans font-semibold text-forest text-sm uppercase tracking-wider mb-1">Address</h3>
-                <p class="text-bark">{site.address.full}</p>
+                <div class="contact-map mt-2 rounded-[6px] overflow-hidden">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51877.2972969184!2d-78.88999256263396!3d35.64421373690308!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89acf53e203c208f%3A0x5f9f54184597aa40!2sHolly%20Springs%2C%20NC%2C%20USA!5e0!3m2!1sen!2sde!4v1778482722904!5m2!1sen!2sde"
+                    width="600"
+                    height="450"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Mission Decks service area — Holly Springs, NC"
+                  ></iframe>
+                </div>
               </div>
             </div>
           </div>
@@ -87,3 +97,14 @@ import { site } from '../data/site';
 
   <GoogleMap areaName="Holly Springs & the NC Triangle" />
 </BaseLayout>
+
+<style>
+  .contact-map {
+    line-height: 0;
+  }
+  .contact-map iframe {
+    width: 100%;
+    height: 240px;
+    display: block;
+  }
+</style>
