@@ -40,6 +40,23 @@ import { site } from '../data/site';
             <p>We are based in Holly Springs, NC, and we serve the Triangle — Holly Springs, Apex, Cary, Fuquay-Varina, Sanford, and Raleigh. Every project is owner-led, which means you work directly with the person who designed your space and who will be on-site during construction.</p>
             <p>From the first conversation to the final walkthrough, we keep things clear, honest, and straightforward. Detailed estimates with no hidden numbers. Realistic timelines that we actually meet. Communication that does not disappear once the contract is signed.</p>
           </div>
+          <aside class="credentials-callout" aria-label="Credentials">
+            <h3 class="credentials-heading">Credentials &amp; Memberships</h3>
+            <ul class="credentials-list">
+              <li>
+                <strong>{site.license.label}</strong>
+                <span class="credentials-detail">North Carolina License #{site.license.number}</span>
+              </li>
+              {site.memberships.map(m => (
+                <li>
+                  <strong>Proud member of {m.name}</strong>
+                  <span class="credentials-detail">
+                    {m.fullName} — the leading trade organization advancing deck safety, craftsmanship standards, and continuing education for professional builders.
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </aside>
         </div>
         <div>
           <img
@@ -117,3 +134,51 @@ import { site } from '../data/site';
 
   <CTASection />
 </BaseLayout>
+
+<style>
+  .credentials-callout {
+    margin-top: 28px;
+    padding: 20px 24px;
+    background-color: #F5F1EB;
+    border-left: 3px solid #E2C284;
+    border-radius: 4px;
+  }
+  .credentials-heading {
+    color: #1B3329;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin: 0 0 12px;
+  }
+  .credentials-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .credentials-list li {
+    padding: 10px 0;
+    border-top: 1px solid rgba(27, 51, 41, 0.08);
+  }
+  .credentials-list li:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+  .credentials-list li:last-child {
+    padding-bottom: 0;
+  }
+  .credentials-list strong {
+    display: block;
+    color: #1B3329;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .credentials-detail {
+    display: block;
+    color: #6b6359;
+    font-size: 0.8125rem;
+    line-height: 1.55;
+  }
+</style>

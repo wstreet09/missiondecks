@@ -24,6 +24,21 @@ import { locations } from '../data/locations';
           <a href={site.social.instagram} class="footer-social" aria-label="Instagram" target="_blank" rel="noopener">IG</a>
           <a href={site.social.google} class="footer-social" aria-label="Google" target="_blank" rel="noopener">Google</a>
         </div>
+        <div class="footer-credentials">
+          <p class="footer-credential-line">
+            <span class="footer-credential-label">{site.license.label}</span>
+            <span class="footer-credential-number">#{site.license.number}</span>
+          </p>
+          {site.memberships.map(m => (
+            <p class="footer-credential-line">
+              Proud member of{' '}
+              <a href={m.url} class="footer-link" target="_blank" rel="noopener" aria-label={`${m.fullName} (${m.name})`}>
+                {m.name}
+              </a>{' '}
+              <span class="footer-credential-sub">— {m.fullName}</span>
+            </p>
+          ))}
+        </div>
       </div>
 
       <!-- Services -->
@@ -198,5 +213,31 @@ import { locations } from '../data/locations';
   .footer-btn:hover {
     background-color: #F5F1EB;
     color: #1B3329 !important;
+  }
+  .footer-credentials {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-credential-line {
+    color: #a89e90;
+    font-size: 0.75rem;
+    line-height: 1.55;
+    margin: 0 0 6px;
+  }
+  .footer-credential-line:last-child {
+    margin-bottom: 0;
+  }
+  .footer-credential-label {
+    color: #c8c0b4;
+    display: block;
+  }
+  .footer-credential-number {
+    color: #E2C284;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .footer-credential-sub {
+    color: #8a8278;
   }
 </style>

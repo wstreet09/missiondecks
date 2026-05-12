@@ -42,6 +42,27 @@ function getSchema() {
           })),
         sameAs: Object.values(site.social),
         priceRange: '$$',
+        identifier: {
+          '@type': 'PropertyValue',
+          propertyID: 'NC Residential General Contractor License',
+          value: site.license.number,
+        },
+        hasCredential: {
+          '@type': 'EducationalOccupationalCredential',
+          credentialCategory: 'license',
+          name: site.license.label,
+          identifier: site.license.number,
+          recognizedBy: {
+            '@type': 'GovernmentOrganization',
+            name: 'North Carolina Licensing Board for General Contractors',
+          },
+        },
+        memberOf: site.memberships.map(m => ({
+          '@type': 'Organization',
+          name: m.fullName,
+          alternateName: m.name,
+          url: m.url,
+        })),
         ...data,
       };
     case 'Service':

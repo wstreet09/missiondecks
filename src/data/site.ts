@@ -29,4 +29,16 @@ export const site = {
   },
   googleMapsEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5144.430855924557!2d-78.87235998728694!3d35.60851617249644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x411bf62d16053f6b%3A0xf1c37c182614f7b1!2sMission%20Decks%20%26%20Design!5e1!3m2!1sen!2sde!4v1774271571943!5m2!1sen!2sde',
   geo: { lat: 35.6085, lng: -78.8724 },
+  license: {
+    label: 'Licensed & Insured Residential General Contractor',
+    number: '109124',
+    short: 'Licensed & Insured · NC Residential GC #109124',
+  },
+  memberships: [
+    {
+      name: 'NADRA',
+      fullName: 'North American Deck and Railing Association',
+      url: 'https://www.nadra.org/',
+    },
+  ],
 };
