@@ -1,0 +1,186 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Container from '../components/Container.astro';
+import Button from '../components/Button.astro';
+import { site } from '../data/site';
+
+const nextSteps = [
+  {
+    step: 1,
+    title: 'We Review Your Request',
+    description: 'Within one business day, we read through your project details and check our schedule.',
+  },
+  {
+    step: 2,
+    title: 'We Reach Out',
+    description: `We will call or email to ask a few follow-up questions and schedule an on-site design consultation.`,
+  },
+  {
+    step: 3,
+    title: 'Your On-Site Visit',
+    description: 'We walk your space with you, talk through material and layout options, and outline next steps.',
+  },
+];
+---
+
+<BaseLayout
+  title="Thank You | Mission Decks & Design"
+  description="Thanks for reaching out to Mission Decks & Design. We will be in touch within one business day."
+  noindex
+>
+  <!--
+    Google Ads conversion tracking placeholder.
+    Replace AW-XXXXXXXXX/AbC-D_efGhIj with the conversion ID + label
+    from Google Ads → Tools → Conversions → (your conversion) → Tag setup.
+    Then uncomment the script block below.
+
+    <script is:inline>
+      gtag('event', 'conversion', {
+        'send_to': 'AW-17622446253/REPLACE_WITH_LABEL',
+        'value': 1.0,
+        'currency': 'USD',
+      });
+    </script>
+  -->
+
+  <Section bg="stone" padding="lg">
+    <Container width="narrow">
+      <div class="thank-you-hero">
+        <div class="thank-you-check" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="36" height="36">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <span class="overline">REQUEST RECEIVED</span>
+        <h1 class="font-serif text-forest text-4xl lg:text-[3rem] mt-3 mb-4">Thank You — We Got It</h1>
+        <div class="gold-line-center mb-6"></div>
+        <p class="text-bark text-lg font-light leading-relaxed">
+          Thanks for taking the time to share the details of your project with us. We know this is only the beginning — and we look forward to walking alongside you as we bring it to life. Someone from Mission Decks will be in touch within <strong>one business day</strong>.
+        </p>
+        <div class="thank-you-cta">
+          <Button href={`tel:${site.phoneRaw}`} variant="gold">Call {site.phone}</Button>
+          <Button href="/services/" variant="secondary">Explore Our Work</Button>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <Section bg="white" padding="lg">
+    <Container width="narrow">
+      <div class="text-center mb-12">
+        <span class="overline">WHAT HAPPENS NEXT</span>
+        <h2 class="font-serif text-forest text-3xl lg:text-[2.5rem] mt-3">A Quick Look at the Next Few Days</h2>
+        <div class="gold-line-center mt-4"></div>
+      </div>
+      <div class="next-steps">
+        {nextSteps.map(s => (
+          <div class="next-step">
+            <span class="next-step-num">{s.step}</span>
+            <div>
+              <h3 class="font-sans font-semibold text-forest text-lg mb-1">{s.title}</h3>
+              <p class="text-bark-light text-[0.9375rem] leading-relaxed">{s.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="thank-you-contact">
+        <p class="text-bark-light text-sm mb-2">In a hurry, or have something to add?</p>
+        <p class="text-bark">
+          <a href={`tel:${site.phoneRaw}`} class="thank-you-link">{site.phone}</a>
+          <span class="thank-you-divider" aria-hidden="true">·</span>
+          <a href={`mailto:${site.email}`} class="thank-you-link">{site.email}</a>
+        </p>
+      </div>
+
+      <div class="text-center mt-12">
+        <a href="/" class="thank-you-back">&larr; Back to home</a>
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>
+
+<style>
+  .thank-you-hero {
+    text-align: center;
+    padding: 16px 0 8px;
+  }
+  .thank-you-check {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #1B3329;
+    color: #E2C284;
+  }
+  .thank-you-cta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 32px;
+  }
+  .next-steps {
+    display: grid;
+    gap: 24px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .next-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 20px 22px;
+    background-color: #F5F1EB;
+    border-radius: 8px;
+    border-left: 3px solid #E2C284;
+  }
+  .next-step-num {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #1B3329;
+    color: #E2C284;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 600;
+  }
+  .thank-you-contact {
+    margin-top: 40px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(27, 51, 41, 0.08);
+    text-align: center;
+  }
+  .thank-you-link {
+    color: #1B3329;
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(226, 194, 132, 0.6);
+    transition: color 0.25s, border-color 0.25s;
+  }
+  .thank-you-link:hover {
+    color: #c79b4e;
+    border-color: #c79b4e;
+  }
+  .thank-you-divider {
+    margin: 0 12px;
+    color: #b8aea0;
+  }
+  .thank-you-back {
+    color: #6b6359;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+  .thank-you-back:hover {
+    color: #1B3329;
+  }
+</style>
