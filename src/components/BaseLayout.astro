@@ -66,6 +66,9 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${site.url}${ogImage
     gtag('config', 'AW-17622446253');
   </script>
 
+  <!-- Per-page head slot (gtag conversion events, additional meta, etc.) -->
+  <slot name="head" />
+
   <!-- Schema slot -->
   <slot name="schema" />
 </head>

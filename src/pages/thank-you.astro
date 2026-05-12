@@ -29,20 +29,14 @@ const nextSteps = [
   description="Thanks for reaching out to Mission Decks & Design. We will be in touch within one business day."
   noindex
 >
-  <!--
-    Google Ads conversion tracking placeholder.
-    Replace AW-XXXXXXXXX/AbC-D_efGhIj with the conversion ID + label
-    from Google Ads → Tools → Conversions → (your conversion) → Tag setup.
-    Then uncomment the script block below.
-
-    <script is:inline>
-      gtag('event', 'conversion', {
-        'send_to': 'AW-17622446253/REPLACE_WITH_LABEL',
-        'value': 1.0,
-        'currency': 'USD',
-      });
-    </script>
-  -->
+  <!-- Event snippet for Submit lead form conversion page -->
+  <script slot="head" is:inline>
+    gtag('event', 'conversion', {
+      'send_to': 'AW-17622446253/u_m4CJLo56scEK3hhNNB',
+      'value': 1.0,
+      'currency': 'USD'
+    });
+  </script>
 
   <Section bg="stone" padding="lg">
     <Container width="narrow">
