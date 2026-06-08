@@ -1,0 +1,38 @@
+# ============================================================
+# 301 redirects: legacy WordPress URLs -> new Astro pages
+# Hostinger / LiteSpeed (Apache-compatible mod_rewrite)
+# Trailing slash is optional on the old URL; new URL keeps it.
+# ============================================================
+RewriteEngine On
+
+# --- Old location "deck builder" pages ---
+RewriteRule ^deck-builder-holly-springs-nc/?$   /services/custom-deck-builder/holly-springs-nc/   [R=301,L]
+RewriteRule ^deck-builder-apex-nc/?$            /services/custom-deck-builder/apex-nc/            [R=301,L]
+RewriteRule ^deck-builder-cary-nc/?$            /services/custom-deck-builder/cary-nc/            [R=301,L]
+RewriteRule ^deck-builder-raleigh-nc/?$         /services/custom-deck-builder/raleigh-nc/         [R=301,L]
+RewriteRule ^deck-builder-fuquay-varina-nc/?$   /services/custom-deck-builder/fuquay-varina-nc/   [R=301,L]
+RewriteRule ^deck-builder-sanford-nc/?$         /services/custom-deck-builder/sanford-nc/         [R=301,L]
+
+# --- Old service pages ---
+RewriteRule ^custom-fence-builders-sanford-nc/?$               /services/fencing-privacy/sanford-nc/    [R=301,L]
+RewriteRule ^outdoor-kitchen-and-dining-builders-sanford-nc/?$ /services/outdoor-kitchens/sanford-nc/   [R=301,L]
+RewriteRule ^outdoor-landscape-lighting-sanford-nc/?$          /services/outdoor-lighting/sanford-nc/   [R=301,L]
+RewriteRule ^pergola-and-arbor-builder-sanford-nc/?$           /services/pergolas-arbors/sanford-nc/    [R=301,L]
+RewriteRule ^porches-and-eze-breeze-windows-in-sanford-nc/?$   /services/porches-eze-breeze/sanford-nc/ [R=301,L]
+RewriteRule ^deck-building/?$          /services/custom-decks/  [R=301,L]
+RewriteRule ^deck-builder-gallery/?$   /services/custom-decks/  [R=301,L]
+RewriteRule ^deck-builder-city-state/?$ /services/             [R=301,L]
+
+# --- Old core pages ---
+RewriteRule ^about-mission-decks-sanford-nc/?$   /about/    [R=301,L]
+RewriteRule ^contact-mission-decks-sanford-nc/?$ /contact/  [R=301,L]
+RewriteRule ^contact-mission-decks/?$            /contact/  [R=301,L]
+RewriteRule ^find-us-on-the-web/?$               /contact/  [R=301,L]
+
+# --- WordPress cruft ---
+RewriteRule ^hello-world/?$             /blog/  [R=301,L]
+RewriteRule ^author/wstreetgmail-com/?$ /blog/  [R=301,L]
+RewriteRule ^category/uncategorized/?$  /blog/  [R=301,L]
+
+# --- Serve the custom 404 page ---
+ErrorDocument 404 /404.html
