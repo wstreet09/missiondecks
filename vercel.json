@@ -1,0 +1,27 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "trailingSlash": true,
+  "redirects": [
+    { "source": "/about-mission-decks-sanford-nc/", "destination": "/about/", "statusCode": 301 },
+    { "source": "/contact-mission-decks-sanford-nc/", "destination": "/contact/", "statusCode": 301 },
+    { "source": "/contact-mission-decks/", "destination": "/contact/", "statusCode": 301 },
+    { "source": "/find-us-on-the-web/", "destination": "/contact/", "statusCode": 301 },
+    { "source": "/custom-fence-builders-sanford-nc/", "destination": "/services/fencing-privacy/sanford-nc/", "statusCode": 301 },
+    { "source": "/outdoor-kitchen-and-dining-builders-sanford-nc/", "destination": "/services/outdoor-kitchens/sanford-nc/", "statusCode": 301 },
+    { "source": "/outdoor-landscape-lighting-sanford-nc/", "destination": "/services/outdoor-lighting/sanford-nc/", "statusCode": 301 },
+    { "source": "/pergola-and-arbor-builder-sanford-nc/", "destination": "/services/pergolas-arbors/sanford-nc/", "statusCode": 301 },
+    { "source": "/porches-and-eze-breeze-windows-in-sanford-nc/", "destination": "/services/porches-eze-breeze/sanford-nc/", "statusCode": 301 },
+    { "source": "/deck-builder-holly-springs-nc/", "destination": "/services/custom-deck-builder/holly-springs-nc/", "statusCode": 301 },
+    { "source": "/deck-builder-apex-nc/", "destination": "/services/custom-deck-builder/apex-nc/", "statusCode": 301 },
+    { "source": "/deck-builder-cary-nc/", "destination": "/services/custom-deck-builder/cary-nc/", "statusCode": 301 },
+    { "source": "/deck-builder-raleigh-nc/", "destination": "/services/custom-deck-builder/raleigh-nc/", "statusCode": 301 },
+    { "source": "/deck-builder-fuquay-varina-nc/", "destination": "/services/custom-deck-builder/fuquay-varina-nc/", "statusCode": 301 },
+    { "source": "/deck-builder-sanford-nc/", "destination": "/services/custom-deck-builder/sanford-nc/", "statusCode": 301 },
+    { "source": "/deck-building/", "destination": "/services/custom-decks/", "statusCode": 301 },
+    { "source": "/deck-builder-gallery/", "destination": "/services/custom-decks/", "statusCode": 301 },
+    { "source": "/deck-builder-city-state/", "destination": "/services/", "statusCode": 301 },
+    { "source": "/hello-world/", "destination": "/blog/", "statusCode": 301 },
+    { "source": "/author/wstreetgmail-com/", "destination": "/blog/", "statusCode": 301 },
+    { "source": "/category/uncategorized/", "destination": "/blog/", "statusCode": 301 }
+  ]
+}
