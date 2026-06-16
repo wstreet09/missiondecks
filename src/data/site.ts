@@ -3,8 +3,8 @@ export const site = {
   tagline: 'Custom Deck Builders in Holly Springs, NC',
   description: 'Custom decks, outdoor kitchens, pergolas & more in Holly Springs, Apex, Cary & the Triangle. Request a consultation from Mission Decks & Design.',
   url: 'https://missiondecks.com',
-  phone: '(919) 432-8865',
-  phoneRaw: '+19194328865',
+  phone: '(919) 342-8865',
+  phoneRaw: '+19193428865',
   email: 'info@missiondecks.com',
   address: {
     street: '6020 Fauvette Ln',
