@@ -1,5 +1,6 @@
 ---
 import { site } from '../data/site';
+import ContactForm from './ContactForm.astro';
 
 interface Props {
   overline?: string;
@@ -12,6 +13,7 @@ interface Props {
   image?: string;
   imageAlt?: string;
   compact?: boolean;
+  showForm?: boolean;
 }
 
 const {
@@ -25,12 +27,13 @@ const {
   image = '/images/hero/aerial-deck-porch.jpeg',
   imageAlt = 'Custom deck by Mission Decks & Design in Holly Springs NC',
   compact = false,
+  showForm = false,
 } = Astro.props;
 ---
 
-<section class:list={['hero-section relative w-full overflow-hidden flex items-center', compact ? 'hero-compact' : 'hero-full']}>
+<section class:list={['hero-section relative w-full flex items-center', compact ? 'hero-compact' : 'hero-full', showForm && 'hero-has-form']}>
   <!-- Background image -->
-  <div class="absolute inset-0">
+  <div class="absolute inset-0 overflow-hidden">
     <img
       src={image}
       alt={imageAlt}
@@ -44,33 +47,43 @@ const {
 
   <!-- Content -->
   <div class="relative z-10 mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 w-full py-12 lg:py-16">
-    <div style="max-width: 720px;">
-      {overline && (
-        <span class="hero-overline animate-fade-up delay-1">{overline}</span>
-      )}
-      <h1 class="hero-heading animate-fade-up delay-2">
-        {heading}
-      </h1>
-      <div class="hero-gold-line animate-fade-up delay-3"></div>
-      {subtitle && (
-        <p class="hero-subtitle animate-fade-up delay-4">
-          {subtitle}
-        </p>
-      )}
-      <div class="flex flex-col sm:flex-row items-start gap-4 animate-fade-up delay-5">
-        <a href={buttonHref} class="hero-btn-primary">
-          {buttonText}
-        </a>
-        {secondaryButtonText && secondaryButtonHref ? (
-          <a href={secondaryButtonHref} class="hero-btn-secondary">
-            {secondaryButtonText}
-          </a>
-        ) : (
-          <a href={`tel:${site.phoneRaw}`} class="hero-phone">
-            Call {site.phone}
-          </a>
+    <div class:list={['hero-inner', showForm && 'hero-inner--form']}>
+      <div class="hero-copy">
+        {overline && (
+          <span class="hero-overline animate-fade-up delay-1">{overline}</span>
         )}
+        <h1 class="hero-heading animate-fade-up delay-2">
+          {heading}
+        </h1>
+        <div class="hero-gold-line animate-fade-up delay-3"></div>
+        {subtitle && (
+          <p class="hero-subtitle animate-fade-up delay-4">
+            {subtitle}
+          </p>
+        )}
+        <div class="flex flex-col sm:flex-row items-start gap-4 animate-fade-up delay-5">
+          <a href={buttonHref} class="hero-btn-primary">
+            {buttonText}
+          </a>
+          {secondaryButtonText && secondaryButtonHref ? (
+            <a href={secondaryButtonHref} class="hero-btn-secondary">
+              {secondaryButtonText}
+            </a>
+          ) : (
+            <a href={`tel:${site.phoneRaw}`} class="hero-phone">
+              Call {site.phone}
+            </a>
+          )}
+        </div>
       </div>
+
+      {showForm && (
+        <div class="hero-form-col animate-fade-up delay-4">
+          <div class="hero-form-wrap">
+            <ContactForm />
+          </div>
+        </div>
+      )}
     </div>
   </div>
 </section>
@@ -78,6 +91,46 @@ const {
 <style>
   .hero-full { min-height: 70vh; }
   .hero-compact { min-height: 45vh; }
+
+  .hero-copy { max-width: 720px; }
+
+  /* Form variant: copy on the left, form on the right (desktop). */
+  .hero-inner--form .hero-copy { max-width: 560px; }
+
+  /* Mobile/tablet: form stacks below the copy in normal flow. */
+  .hero-form-wrap {
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 24rem;
+  }
+
+  /* Raise the hero (and its overflowing form) above the next section. */
+  .hero-has-form { z-index: 2; }
+
+  @media (min-width: 1024px) {
+    .hero-inner--form {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 400px;
+      gap: 3.5rem;
+      align-items: start;
+    }
+    /* The form column reserves horizontal space; the form itself is
+       absolutely positioned so it can overflow past the hero's bottom
+       edge into the section below without growing the hero. */
+    .hero-inner--form .hero-form-col {
+      position: relative;
+      min-height: 1px;
+    }
+    .hero-inner--form .hero-form-wrap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin-top: 0;
+      max-width: none;
+      z-index: 5;
+    }
+  }
 
   .hero-overlay {
     background: linear-gradient(
