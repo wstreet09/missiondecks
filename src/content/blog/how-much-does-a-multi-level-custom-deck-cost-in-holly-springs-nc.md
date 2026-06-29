@@ -243,4 +243,4 @@ Good projects start with real numbers. Better ones start with the right team.
 
 An outdoor kitchen built on a deck isn’t your average project—it demands a team that understands structural integrity, material performance, utility coordination, and local building codes all at once. Choosing the right professionals is what separates a space that simply looks good from one that’s built to perform and last for years.
 
-At Mission Decks & Design, we partner with homeowners to create outdoor kitchens that are both stunning and highly functional. From the first deck assessment to the final installation, we manage every step with precision and attention to detail. Call us today at (919) 432-8865 for a free consultation and take the first step toward creating a backyard space you’ll love.
+At Mission Decks & Design, we partner with homeowners to create outdoor kitchens that are both stunning and highly functional. From the first deck assessment to the final installation, we manage every step with precision and attention to detail. Call us today at (919) 342-8865 for a free consultation and take the first step toward creating a backyard space you’ll love.
