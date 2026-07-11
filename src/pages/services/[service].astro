@@ -23,6 +23,14 @@ export function getStaticPaths() {
 
 const { service } = Astro.props;
 const combos = getCombinationsByService(service.slug);
+
+// Per-service detail photos; falls back to the default deck trio when a service
+// doesn't define its own (see Service.detailImages in data/services.ts).
+const detailImages = service.detailImages ?? [
+  { src: '/images/areas/composite-deck-cable-railing.jpg', alt: `${service.name} project with cable railing by Mission Decks` },
+  { src: '/images/blog/deck-stairs-black-railing.jpeg', alt: `${service.name} stairs and railing detail` },
+  { src: '/images/areas/full-backyard-deck-panoramic.jpg', alt: `Finished ${service.name.toLowerCase()} project — full backyard deck and porch by Mission Decks` },
+];
 ---
 
 <BaseLayout
@@ -67,20 +75,20 @@ const combos = getCombinationsByService(service.slug);
               </div>
               <div class="grid grid-cols-2 gap-4">
                 <img
-                  src="/images/areas/composite-deck-cable-railing.jpg"
-                  alt={`${service.name} project with cable railing by Mission Decks`}
+                  src={detailImages[0].src}
+                  alt={detailImages[0].alt}
                   class="rounded-[8px] w-full aspect-[4/3] object-cover"
                   width="360" height="270" loading="lazy"
                 />
                 <img
-                  src="/images/blog/deck-stairs-black-railing.jpeg"
-                  alt={`${service.name} stairs and railing detail`}
+                  src={detailImages[1].src}
+                  alt={detailImages[1].alt}
                   class="rounded-[8px] w-full aspect-[4/3] object-cover"
                   width="360" height="270" loading="lazy"
                 />
                 <img
-                  src="/images/areas/full-backyard-deck-panoramic.jpg"
-                  alt={`Finished ${service.name.toLowerCase()} project — full backyard deck and porch by Mission Decks`}
+                  src={detailImages[2].src}
+                  alt={detailImages[2].alt}
                   class="rounded-[8px] w-full aspect-[4/3] object-cover col-span-2"
                   width="720" height="270" loading="lazy"
                 />

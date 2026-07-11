@@ -8,6 +8,7 @@ export interface Service {
   metaTitle: string;
   metaDescription: string;
   image: string;
+  detailImages?: { src: string; alt: string }[];
   features: string[];
   process: { step: number; title: string; description: string }[];
   faqs: { question: string; answer: string }[];
@@ -85,6 +86,11 @@ export const services: Service[] = [
     metaTitle: 'Outdoor Kitchens | Mission Decks & Design',
     metaDescription: 'Custom outdoor kitchen design & installation in Holly Springs, Apex, Cary & the Triangle. Grills, countertops & storage. Request a consultation.',
     image: '/images/services/outdoor-kitchen-pergola-grill.jpg',
+    detailImages: [
+      { src: '/images/services/outdoor-kitchen-pergola-grill.jpg', alt: 'Built-in outdoor kitchen with grill and pizza oven by Mission Decks' },
+      { src: '/images/services/pergola-pool-daytime.jpeg', alt: 'Covered outdoor kitchen and grilling pavilion beside a pool' },
+      { src: '/images/services/pergola-outdoor-living-night.jpeg', alt: 'Outdoor kitchen and entertaining space at night with grills and fire table' },
+    ],
     features: [
       'Built-in gas grills, smokers, and pizza ovens from top brands',
       'Granite, quartz, and stamped concrete countertop options',
