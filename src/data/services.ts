@@ -26,7 +26,7 @@ export const services: Service[] = [
     heroHeading: 'Custom Deck Builder in Holly Springs & the NC Triangle',
     metaTitle: 'Custom Decks | Mission Decks & Design',
     metaDescription: 'Premium custom deck building in Holly Springs, Apex, Cary & the Triangle. Composite, cedar & pressure-treated lumber. Request a consultation.',
-    image: '/images/hero/composite-deck-screened-porch.jpeg',
+    image: '/images/areas/composite-deck-cable-railing.jpg',
     features: [
       'Composite decking from Trex, TimberTech, and Fiberon with 25–50 year warranties',
       'Western Red Cedar and pressure-treated Southern Yellow Pine options',
@@ -84,7 +84,7 @@ export const services: Service[] = [
     heroHeading: 'Outdoor Kitchen Builder in Holly Springs & the NC Triangle',
     metaTitle: 'Outdoor Kitchens | Mission Decks & Design',
     metaDescription: 'Custom outdoor kitchen design & installation in Holly Springs, Apex, Cary & the Triangle. Grills, countertops & storage. Request a consultation.',
-    image: '/images/services/pergola-pool-daytime.jpeg',
+    image: '/images/services/outdoor-kitchen-pergola-grill.jpg',
     features: [
       'Built-in gas grills, smokers, and pizza ovens from top brands',
       'Granite, quartz, and stamped concrete countertop options',
@@ -192,7 +192,7 @@ export const services: Service[] = [
     heroHeading: 'Outdoor Lighting Installation in Holly Springs & the NC Triangle',
     metaTitle: 'Outdoor Lighting | Mission Decks & Design',
     metaDescription: 'Professional outdoor lighting for decks, patios & landscapes in Holly Springs, Apex, Cary & the Triangle. Safety & ambiance. Request a consultation.',
-    image: '/images/services/pergola-outdoor-living-night.jpeg',
+    image: '/images/services/outdoor-lighting-luxury-home.jpg',
     features: [
       'Low-voltage LED systems with 50,000+ hour lifespan',
       'Deck post cap lights, recessed riser lights, and rail lighting',
