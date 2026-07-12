@@ -87,9 +87,9 @@ export const services: Service[] = [
     metaDescription: 'Custom outdoor kitchen design & installation in Holly Springs, Apex, Cary & the Triangle. Grills, countertops & storage. Request a consultation.',
     image: '/images/services/outdoor-kitchen-pergola-grill.jpg',
     detailImages: [
+      { src: '/images/services/outdoor-kitchen-stone-bar-daytime.jpg', alt: 'Custom stone outdoor kitchen with built-in grill, bar seating, and pergola by Mission Decks' },
+      { src: '/images/services/outdoor-kitchen-stone-lit-dusk.jpg', alt: 'Stone outdoor kitchen with stainless grill and under-counter lighting at dusk' },
       { src: '/images/services/outdoor-kitchen-pergola-grill.jpg', alt: 'Built-in outdoor kitchen with grill and pizza oven by Mission Decks' },
-      { src: '/images/services/pergola-pool-daytime.jpeg', alt: 'Covered outdoor kitchen and grilling pavilion beside a pool' },
-      { src: '/images/services/pergola-outdoor-living-night.jpeg', alt: 'Outdoor kitchen and entertaining space at night with grills and fire table' },
     ],
     features: [
       'Built-in gas grills, smokers, and pizza ovens from top brands',
