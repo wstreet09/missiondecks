@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import HeroSection from '../../components/HeroSection.astro';
+import Section from '../../components/Section.astro';
+import Container from '../../components/Container.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import GalleryGrid from '../../components/GalleryGrid.astro';
+import Lightbox from '../../components/Lightbox.astro';
+import CTASection from '../../components/CTASection.astro';
+import { getAlbums } from '../../lib/gallery/source';
+
+export async function getStaticPaths() {
+  const albums = await getAlbums();
+  return albums.map(album => ({ params: { album: album.slug }, props: { album } }));
+}
+
+const { album } = Astro.props;
+---
+
+<BaseLayout
+  title={`${album.name} Gallery | Mission Decks & Design`}
+  description={`Photos of ${album.name.toLowerCase()} projects by Mission Decks & Design in Holly Springs and the NC Triangle.`}
+>
+  <HeroSection
+    heading={album.name}
+    subtitle={`${album.count} project ${album.count === 1 ? 'photo' : 'photos'}`}
+    image="/images/hero/aerial-deck-porch.jpeg"
+    imageAlt={`${album.name} project gallery by Mission Decks & Design`}
+    compact
+  />
+
+  <Section bg="white" padding="sm">
+    <Container>
+      <Breadcrumbs items={[{ label: 'Gallery', href: '/gallery/' }, { label: album.name }]} />
+    </Container>
+  </Section>
+
+  <Section bg="white">
+    <Container>
+      <GalleryGrid photos={album.photos} />
+    </Container>
+  </Section>
+
+  <Lightbox />
+
+  <CTASection />
+</BaseLayout>

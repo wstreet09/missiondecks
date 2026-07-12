@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import HeroSection from '../../components/HeroSection.astro';
+import Section from '../../components/Section.astro';
+import Container from '../../components/Container.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import AlbumCard from '../../components/AlbumCard.astro';
+import CTASection from '../../components/CTASection.astro';
+import { getAlbums } from '../../lib/gallery/source';
+
+const albums = await getAlbums();
+---
+
+<BaseLayout
+  title="Project Gallery | Mission Decks & Design"
+  description="Browse photos of custom decks, outdoor kitchens, pergolas, and outdoor living projects by Mission Decks & Design in Holly Springs and the NC Triangle."
+>
+  <HeroSection
+    heading="Project Gallery"
+    subtitle="Real decks, kitchens, and outdoor spaces we've built for homeowners across the Triangle."
+    image="/images/hero/aerial-deck-porch.jpeg"
+    imageAlt="Custom deck and outdoor living gallery by Mission Decks & Design"
+    compact
+  />
+
+  <Section bg="white" padding="sm">
+    <Container>
+      <Breadcrumbs items={[{ label: 'Gallery' }]} />
+    </Container>
+  </Section>
+
+  <Section bg="white">
+    <Container>
+      {albums.length === 0 ? (
+        <p class="text-bark-light text-lg">Project photos coming soon.</p>
+      ) : (
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {albums.map(album => (
+            <AlbumCard
+              href={`/gallery/${album.slug}/`}
+              name={album.name}
+              count={album.count}
+              image={album.cover.image!}
+            />
+          ))}
+        </div>
+      )}
+    </Container>
+  </Section>
+
+  <CTASection />
+</BaseLayout>

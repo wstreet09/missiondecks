@@ -1,0 +1,37 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  href: string;
+  name: string;
+  count: number;
+  image: ImageMetadata;
+}
+
+const { href, name, count, image } = Astro.props;
+const label = `${count} ${count === 1 ? 'photo' : 'photos'}`;
+---
+
+<a href={href} class="group block bg-white rounded-[8px] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-400 no-underline overflow-hidden">
+  <div class="overflow-hidden">
+    <Image
+      src={image}
+      alt={`${name} project gallery by Mission Decks & Design`}
+      width={640}
+      height={427}
+      widths={[320, 640, 960]}
+      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+      class="w-full aspect-[3/2] object-cover group-hover:scale-[1.04] transition-transform duration-500"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+  <div class="px-7 py-6">
+    <h3 class="font-serif text-forest text-xl lg:text-2xl mb-2">{name}</h3>
+    <p class="text-bark-light text-[0.9375rem] mb-4">{label}</p>
+    <span class="inline-flex items-center text-gold font-semibold text-sm tracking-wide group-hover:gap-2.5 gap-1.5 transition-all duration-300 uppercase">
+      View Album <span class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+    </span>
+  </div>
+</a>
