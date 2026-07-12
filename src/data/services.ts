@@ -317,6 +317,11 @@ export const services: Service[] = [
     metaTitle: 'Porches & Eze Breeze | Mission Decks & Design',
     metaDescription: 'Screened porches and Eze Breeze window installations in Holly Springs, Apex, Cary & the Triangle. Weather-protected outdoor rooms. Request a consultation.',
     image: '/images/services/screened-porch-horizontal-skirting.jpeg',
+    detailImages: [
+      { src: '/images/services/screened-porch-deck-daytime.jpg', alt: 'Screened porch with composite deck and steps in daylight by Mission Decks' },
+      { src: '/images/services/screened-porch-lit-dusk.jpg', alt: 'Screened porch with lit interior and landscaping at dusk by Mission Decks' },
+      { src: '/images/services/screened-porch-horizontal-skirting.jpeg', alt: 'Screened porch with horizontal privacy skirting by Mission Decks' },
+    ],
     features: [
       'Custom screened porches with aluminum or fiberglass mesh',
       'Eze Breeze sliding vinyl panel window systems',
