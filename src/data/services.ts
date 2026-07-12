@@ -258,6 +258,11 @@ export const services: Service[] = [
     metaTitle: 'Fencing & Privacy | Mission Decks & Design',
     metaDescription: 'Custom fencing and privacy solutions in Holly Springs, Apex, Cary & the Triangle. Wood, vinyl & composite materials. Request a consultation.',
     image: '/images/services/privacy-fence-backyard.jpg',
+    detailImages: [
+      { src: '/images/services/fence-white-vinyl-privacy.jpg', alt: 'White vinyl privacy fence with landscaped border by Mission Decks' },
+      { src: '/images/services/fence-cedar-privacy.jpg', alt: 'Cedar wood privacy fence with landscaped border by Mission Decks' },
+      { src: '/images/services/privacy-fence-backyard.jpg', alt: 'Wood privacy fence enclosing a landscaped backyard by Mission Decks' },
+    ],
     features: [
       'Western Red Cedar and pressure-treated pine privacy fences',
       'Vinyl fencing in white, tan, and gray with lifetime color warranty',
