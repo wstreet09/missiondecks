@@ -4,6 +4,7 @@ import Section from '../components/Section.astro';
 import Container from '../components/Container.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import ContactForm from '../components/ContactForm.astro';
+import Button from '../components/Button.astro';
 import GoogleMap from '../components/GoogleMap.astro';
 import SchemaMarkup from '../components/SchemaMarkup.astro';
 import { site } from '../data/site';
@@ -91,6 +92,9 @@ import { site } from '../data/site';
       <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
         <img src="/images/areas/full-backyard-deck-panoramic.png" alt="Full backyard deck and porch transformation" class="rounded-[8px] w-full aspect-[4/3] object-cover md:col-span-2" width="720" height="360" loading="lazy" />
         <img src="/images/services/pergola-outdoor-living-night.jpeg" alt="Pergola with string lights at night" class="rounded-[8px] w-full aspect-[4/3] object-cover" width="480" height="360" loading="lazy" />
+      </div>
+      <div class="text-center mt-8">
+        <Button href="/gallery/our-work/" variant="secondary">View Full Gallery</Button>
       </div>
     </Container>
   </Section>
