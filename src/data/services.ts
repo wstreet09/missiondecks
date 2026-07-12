@@ -145,6 +145,11 @@ export const services: Service[] = [
     metaTitle: 'Pergolas & Arbors | Mission Decks & Design',
     metaDescription: 'Custom pergola and arbor design & installation in Holly Springs, Apex, Cary & the Triangle. Wood & composite options. Request a consultation.',
     image: '/images/services/pergola-string-lights.jpeg',
+    detailImages: [
+      { src: '/images/services/pergola-cedar-patio-daytime.jpg', alt: 'Cedar pergola over a paver patio with lounge seating by Mission Decks' },
+      { src: '/images/services/pergola-white-fireplace-evening.jpg', alt: 'White pergola with stone fireplace and lounge seating in the evening' },
+      { src: '/images/services/pergola-dark-fireplace-dusk.jpg', alt: 'Dark-stained pergola with string lights and a stone fireplace at dusk' },
+    ],
     features: [
       'Freestanding and attached pergola designs',
       'Western Red Cedar, pressure-treated pine, and composite options',
