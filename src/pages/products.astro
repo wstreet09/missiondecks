@@ -14,7 +14,7 @@ import Button from '../components/Button.astro';
 // Trex returns an <iframe> whose src looks like https://trex...  — copy ONLY
 // the src value and drop it in below. Leave width/height off the Trex form or
 // ignore their 650px preview cap; we render full-width responsively here.
-const trexEmbedSrc = 'https://dealer.trex.com/?utm_id=001RN00000San25YAB&max_width=950';
+const trexEmbedSrc = 'https://dealer.trex.com/?utm_id=001RN00000San25YAB&max_width=1600';
 const embedReady = trexEmbedSrc !== 'PASTE_TREX_IFRAME_SRC_HERE';
 ---
 
@@ -41,7 +41,7 @@ const embedReady = trexEmbedSrc !== 'PASTE_TREX_IFRAME_SRC_HERE';
 
   <Section bg="white">
     <Container>
-      <div class="max-w-3xl mb-10">
+      <div class="max-w-[768px] mb-10">
         <h2 class="font-serif text-forest text-3xl lg:text-[2.5rem] mb-6">Browse Trex Decking & Railing</h2>
         <div class="space-y-4 text-bark leading-relaxed">
           <p>The catalog below is Trex's official product portfolio, kept up to date by Trex — so you're always seeing the latest decking lines, railing systems, colors, and accessories. Explore the boards and finishes you love, then let us handle the design, engineering, and installation.</p>
@@ -55,17 +55,17 @@ const embedReady = trexEmbedSrc !== 'PASTE_TREX_IFRAME_SRC_HERE';
   </Section>
 
   <Section bg="stone" padding="sm">
-    <Container>
-      {embedReady ? (
-        <div class="trex-embed-frame">
-          <iframe
-            src={trexEmbedSrc}
-            title="Trex product catalog"
-            loading="lazy"
-            allowfullscreen
-          ></iframe>
-        </div>
-      ) : (
+    {embedReady ? (
+      <div class="trex-embed-frame">
+        <iframe
+          src={trexEmbedSrc}
+          title="Trex product catalog"
+          loading="lazy"
+          allowfullscreen
+        ></iframe>
+      </div>
+    ) : (
+      <Container>
         <div class="trex-embed-placeholder">
           <p class="placeholder-title">Trex catalog embed goes here</p>
           <p class="placeholder-body">
@@ -74,25 +74,20 @@ const embedReady = trexEmbedSrc !== 'PASTE_TREX_IFRAME_SRC_HERE';
             <code>trexEmbedSrc</code> at the top of <code>src/pages/products.astro</code>.
           </p>
         </div>
-      )}
-    </Container>
+      </Container>
+    )}
   </Section>
 
   <CTASection />
 </BaseLayout>
 
 <style>
-  /* Trex serves this embed at max_width=950, so we center it at that width
-     rather than stretching full-bleed. The Trex site scrolls internally, so we
-     give it a tall fixed viewport (cross-origin iframes can't report height). */
+  /* Full-bleed embed: 100% page width and a tall viewport. The Trex site scrolls
+     internally, so we give it a large fixed height (cross-origin iframes can't
+     report their own height, so true auto-sizing isn't possible). */
   .trex-embed-frame {
     width: 100%;
-    max-width: 950px;
-    margin: 0 auto;
-    height: 1200px;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 1px 3px rgba(27, 51, 41, 0.08);
+    height: 1600px;
     background: #ffffff;
   }
   .trex-embed-frame iframe {
@@ -103,7 +98,7 @@ const embedReady = trexEmbedSrc !== 'PASTE_TREX_IFRAME_SRC_HERE';
   }
   @media (max-width: 768px) {
     .trex-embed-frame {
-      height: 1000px;
+      height: 1200px;
     }
   }
 
