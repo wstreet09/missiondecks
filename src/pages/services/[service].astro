@@ -109,6 +109,17 @@ const detailImages = service.detailImages ?? [
             </div>
           </div>
 
+          <!-- Trex catalog callout (custom decks only) -->
+          {service.slug === 'custom-decks' && (
+            <div class="mb-16 flex flex-col sm:flex-row sm:items-center gap-5 justify-between bg-white border border-border/60 rounded-[12px] p-6 lg:p-8">
+              <div>
+                <h3 class="font-serif text-forest text-2xl mb-2">Explore the Full Trex Lineup</h3>
+                <p class="text-bark-light text-base">Browse every Trex decking and railing color, then let us help you choose.</p>
+              </div>
+              <Button href="/products/" variant="secondary">Browse Trex Products</Button>
+            </div>
+          )}
+
           <!-- Process -->
           <div class="mb-16">
             <ProcessSteps steps={service.process} heading={`Our ${service.name} Process`} />

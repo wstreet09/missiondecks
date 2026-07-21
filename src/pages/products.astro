@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import Section from '../components/Section.astro';
+import Container from '../components/Container.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CTASection from '../components/CTASection.astro';
+import SchemaMarkup from '../components/SchemaMarkup.astro';
+import Button from '../components/Button.astro';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TREX EMBED: paste the src URL that Trex generates for you here.
+// On Trex's "Embed Trex Site" page, enter a width/height and click CREATE.
+// Trex returns an <iframe> whose src looks like https://trex...  — copy ONLY
+// the src value and drop it in below. Leave width/height off the Trex form or
+// ignore their 650px preview cap; we render full-width responsively here.
+const trexEmbedSrc = 'https://dealer.trex.com/?utm_id=001RN00000San25YAB&max_width=950';
+const embedReady = trexEmbedSrc !== 'PASTE_TREX_IFRAME_SRC_HERE';
+---
+
+<BaseLayout
+  title="Explore Trex Products | Mission Decks & Design"
+  description="Browse the full Trex composite decking, railing, and fastener lineup, then request a consultation from Mission Decks & Design in Holly Springs, NC."
+>
+  <SchemaMarkup slot="schema" type="LocalBusiness" />
+
+  <HeroSection
+    overline="TREX PRODUCTS"
+    heading="Explore the Full Trex Lineup"
+    subtitle="As a Trex partner, we build with the industry's leading composite decking and railing. Browse the complete product catalog below — decking, railing, fasteners, and drainage — then reach out and we'll help you choose the right materials for your project."
+    image="/images/areas/composite-deck-cable-railing.jpg"
+    imageAlt="Composite Trex decking with black cable railing in Holly Springs NC"
+    compact
+  />
+
+  <Section bg="white" padding="sm">
+    <Container>
+      <Breadcrumbs items={[{ label: 'Products' }]} />
+    </Container>
+  </Section>
+
+  <Section bg="white">
+    <Container>
+      <div class="max-w-3xl mb-10">
+        <h2 class="font-serif text-forest text-3xl lg:text-[2.5rem] mb-6">Browse Trex Decking & Railing</h2>
+        <div class="space-y-4 text-bark leading-relaxed">
+          <p>The catalog below is Trex's official product portfolio, kept up to date by Trex — so you're always seeing the latest decking lines, railing systems, colors, and accessories. Explore the boards and finishes you love, then let us handle the design, engineering, and installation.</p>
+          <p>Not sure which line fits your budget or style? That's what we're here for. We'll walk you through samples in person and recommend the best material for the way you actually use your space.</p>
+        </div>
+        <div class="mt-6">
+          <Button href="/contact/" variant="primary">Request a Consultation</Button>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <Section bg="stone" padding="sm">
+    <Container>
+      {embedReady ? (
+        <div class="trex-embed-frame">
+          <iframe
+            src={trexEmbedSrc}
+            title="Trex product catalog"
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
+        </div>
+      ) : (
+        <div class="trex-embed-placeholder">
+          <p class="placeholder-title">Trex catalog embed goes here</p>
+          <p class="placeholder-body">
+            Open your Trex partner portal → "Embed Trex Site" page, click <strong>Create</strong>,
+            then paste the generated iframe <code>src</code> into
+            <code>trexEmbedSrc</code> at the top of <code>src/pages/products.astro</code>.
+          </p>
+        </div>
+      )}
+    </Container>
+  </Section>
+
+  <CTASection />
+</BaseLayout>
+
+<style>
+  /* Trex serves this embed at max_width=950, so we center it at that width
+     rather than stretching full-bleed. The Trex site scrolls internally, so we
+     give it a tall fixed viewport (cross-origin iframes can't report height). */
+  .trex-embed-frame {
+    width: 100%;
+    max-width: 950px;
+    margin: 0 auto;
+    height: 1200px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(27, 51, 41, 0.08);
+    background: #ffffff;
+  }
+  .trex-embed-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+  @media (max-width: 768px) {
+    .trex-embed-frame {
+      height: 1000px;
+    }
+  }
+
+  .trex-embed-placeholder {
+    width: 100%;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 48px 24px;
+    border: 2px dashed #E2C284;
+    border-radius: 8px;
+    background: #ffffff;
+  }
+  .placeholder-title {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    color: #1B3329;
+    font-size: 1.125rem;
+    margin: 0 0 8px;
+  }
+  .placeholder-body {
+    color: #6b6359;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    max-width: 560px;
+    margin: 0;
+  }
+  .placeholder-body code {
+    background: #F5F1EB;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 0.85em;
+  }
+</style>
